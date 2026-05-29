@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 時代的「自他共喜」與「人間革命」 ─ 黃志宏專題分享</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- 載入 Google Fonts: Outfit (英) + Noto Sans TC (中無襯線) + Noto Serif TC (中宋體) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;500;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+
+  <!-- SVG 噪點噪紋濾鏡 (用於日式和紙紋理) -->
+  <svg style="display: none;">
+    <filter id="washi-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.035 0" />
+    </filter>
+  </svg>
+
+  <!-- 和紙顆粒紋理層 -->
+  <div class="washi-texture-layer"></div>
+
+  <!-- 日式生機粒子背景 (綠葉與金點) -->
+  <div class="particles-container">
+    <div class="particle leaf-1"></div>
+    <div class="particle gold-1"></div>
+    <div class="particle leaf-2"></div>
+    <div class="particle gold-2"></div>
+    <div class="particle leaf-3"></div>
+    <div class="particle gold-3"></div>
+    <div class="particle leaf-4"></div>
+    <div class="particle gold-4"></div>
+    <div class="particle leaf-5"></div>
+    <div class="particle gold-5"></div>
+  </div>
+
+  <!-- 簡報主容器 -->
+  <main id="slider-container">
+    
+    <!-- Slide 1: 封面 -->
+    <section class="slide active" id="slide-1" data-note-index="1">
+      <!-- 禪意圓融日輪 -->
+      <div class="japan-sun"></div>
+      <div class="slide-content center-layout">
+        <div class="subtitle-badge"><span>2026 社會部圈擴大學習會 中部場次</span></div>
+        <h1 class="main-title">
+          <span>AI 時代的</span><br>
+          <span class="highlight-green">「自他共喜」</span><span>與</span><br>
+          <span class="highlight-gold">「人間革命」</span>
+        </h1>
+        <div class="author-info">
+          <p class="author-name"><span>分享者：黃志宏</span></p>
+          <p class="author-title"><span>梵亞行銷有限公司 總經理</span></p>
+          <p class="location-info"><span>2026.06.14 ─ 金弘笙講堂</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: 御書金句 -->
+    <section class="slide" id="slide-2" data-note-index="2">
+      <div class="japan-sun mini"></div>
+      <div class="slide-content quote-layout">
+        <div class="slide-hint"><span>02 ─ 經典</span></div>
+        <div class="quote-symbol">“</div>
+        <blockquote class="large-quote">
+          <span>「喜者，</span><span class="highlight-green">自他共喜</span><span>也。」</span>
+        </blockquote>
+        <cite class="quote-author"><span>──《御書》─ 自他彼此皆幸福</span></cite>
+        <p class="quote-lead"><span>這正是我這幾年在 AI 時代，最深刻的體會。</span></p>
+      </div>
+    </section>
+
+    <!-- Slide 3: 為何我不害怕 AI -->
+    <section class="slide" id="slide-3" data-note-index="3">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>03 ─ 挑戰</span></div>
+          <h2><span>面對 AI 浪潮，我無比興奮！</span></h2>
+        </div>
+        <div class="slide-body vertical-layout">
+          <p class="lead-text full-width"><span>信心是把「恐懼」轉化為「前進動力」的終極引擎。</span></p>
+          <div class="grid-three-cols">
+            <div class="guideline-card">
+              <h3><span>「先接受、後挑戰」</span></h3>
+              <p><span>擁抱未知，在實踐中尋找解答與突破。</span></p>
+            </div>
+            <div class="guideline-card">
+              <h3><span>「要向青年學習」</span></h3>
+              <p><span>保持謙虛，傾聽時代前沿的聲音。</span></p>
+            </div>
+            <div class="guideline-card highlight-border">
+              <h3><span>率先改變</span></h3>
+              <p><span>不害怕改變，更要率先改變！</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: 現場觀察與提醒 -->
+    <section class="slide" id="slide-4" data-note-index="4">
+      <div class="slide-content centered-text-layout">
+        <div class="slide-hint"><span>04 ─ 觀察</span></div>
+        <div class="badge"><span>第一線輔導觀察</span></div>
+        <h2 class="section-title"><span>一個很現實的問題</span></h2>
+        <div class="focus-box">
+          <p class="accent-text"><span>「絕大部分中小企業的主管，對 AI 的認識還停留在新聞層面，自己沒真正用過。」</span></p>
+        </div>
+        <div class="professor-quote">
+          <span class="quote-label"><span>簡立峰 教授 (前 Google 台灣總經理)：</span></span>
+          <blockquote><span>「這一場 AI 的革命，是</span><span class="highlight-gold">老闆自己的革命</span><span>。」</span></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: 一場生命的變革 -->
+    <section class="slide" id="slide-5" data-note-index="5">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>05 ─ 革命</span></div>
+          <div class="badge"><span>人間革命的精神</span></div>
+          <h2><span>AI 革命本質上，是「生命的變革」</span></h2>
+        </div>
+        <div class="slide-body split-layout reverse">
+          <div class="left-col">
+            <p class="lead-text"><span>經營者若不在內心先完成這場革命，改變思維與習慣，就沒有能力去帶動組織的優化。</span></p>
+          </div>
+          <div class="right-col vertical-flow">
+            <div class="warning-callout">
+              <p class="callout-title"><span>關鍵警示</span></p>
+              <p class="callout-desc"><span>「如果老闆的工作流程不能優化，那他也沒有能力去優化組織的工作流程。」</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: 馬拉汽車的啟示 (結合圖片 1) -->
+    <section class="slide" id="slide-6" data-note-index="6">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>06 ─ 啟示</span></div>
+          <h2><span>馬拉汽車的啟示</span></h2>
+        </div>
+        <div class="slide-body split-layout image-right">
+          <div class="left-col">
+            <div class="car-comparison">
+              <span class="bad"><span>農業時代的馬</span></span>
+              <span class="arrow"><span>→</span></span>
+              <span class="good"><span>太空時代的汽車</span></span>
+            </div>
+            <p class="danger-title"><span>老闆不用 AI，強推員工用的代價：</span></p>
+            <ul class="danger-list">
+              <li><span class="num-badge">1</span><span class="list-text">看不到 AI 的天花板，失去進化可能。</span></li>
+              <li><span class="num-badge">2</span><span class="list-text">不知道哪些業務流程真正值得改造。</span></li>
+              <li><span class="num-badge">3</span><span class="list-text">員工不敢用，深怕工作量加重或造成裁員。</span></li>
+            </ul>
+          </div>
+          <div class="right-col image-col">
+            <div class="image-wrapper">
+              <img src="assets/Horse_drawn_US_Mail_car.jpg" alt="馬拉汽車的黑白照片" id="mail-car-img">
+              <div class="image-caption"><span>一百年前的「馬拉汽車」：思維還停留在馬車時代</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: 我的勝利實證 ─ 培育 AI 尖兵 -->
+    <section class="slide" id="slide-7" data-note-index="7">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>07 ─ 實證</span></div>
+          <div class="badge"><span>勝利實證 ─ 教育與青年培育</span></div>
+          <h2><span>向「國際級老師傅」學習</span></h2>
+        </div>
+        <div class="slide-body split-layout">
+          <!-- 左欄：學術培育實證 (中教大 AI 講師) -->
+          <div class="left-col project-showcase" style="grid-column: span 1;">
+            <div class="showcase-card" style="padding: 40px; height: auto;">
+              <div class="showcase-header">
+                <span class="client-badge" style="font-size: 1.45rem; padding: 8px 20px;"><span>臺中教育大學進修推廣部 ─ 主辦講師</span></span>
+                <h4 style="font-size: 2.8rem; margin-top: 10px;"><span>領軍 8 位實戰業師 (內含 4 位優秀創價青年)</span></h4>
+              </div>
+              <div class="showcase-body">
+                <p style="font-size: 1.65rem; margin-bottom: 20px; color: var(--text-secondary);">
+                  <span>穩定與臺中教育大學進修推廣部合作，配合勞動部青年轉職計畫，為台灣培育後繼競爭力，今年主辦並開設兩門熱門實戰大課：</span>
+                </p>
+                <ul class="danger-list" style="margin-top: 15px;">
+                  <li style="font-size: 1.65rem; margin-bottom: 15px; color: var(--text-primary);">
+                    <span class="num-badge" style="background: rgba(46, 90, 54, 0.05); border-color: var(--accent-green); color: var(--accent-green); width: 38px; height: 38px; font-size: 1.2rem;">A</span>
+                    <span class="list-text" style="font-weight: 700;">AI 應用與社群行銷實務培訓班</span>
+                  </li>
+                  <li style="font-size: 1.65rem; margin-bottom: 15px; color: var(--text-primary);">
+                    <span class="num-badge" style="background: rgba(46, 90, 54, 0.05); border-color: var(--accent-green); color: var(--accent-green); width: 38px; height: 38px; font-size: 1.2rem;">B</span>
+                    <span class="list-text" style="font-weight: 700;">Figma UI UX 設計與 AI 全端開發實戰班</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 右欄：生動金句與大字 -->
+          <div class="right-col vertical-flow" style="grid-column: span 1; justify-content: center; padding-left: 5%;">
+            <div class="warning-callout" style="background: rgba(46, 90, 54, 0.02); border-left: 6px solid var(--accent-green); padding: 40px; border-radius: 0 8px 8px 0;">
+              <p class="callout-title" style="color: var(--accent-green); font-size: 1.45rem;"><span>教育與傳承的使命</span></p>
+              <p class="callout-desc" style="font-size: 2.8rem; line-height: 1.5; font-family: var(--font-title); font-weight: 900; background: linear-gradient(135deg, var(--accent-green), #1b3a22); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <span>「用實力與慈悲，<br>在社會的舞台上<br>培育廣布後繼！」</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: 我的勝利實證 ─ 企業 AI 智能化轉型 -->
+    <section class="slide" id="slide-8" data-note-index="8">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>08 ─ 實證</span></div>
+          <div class="badge"><span>勝利實證 ─ 企業智能化與社會實證</span></div>
+          <h2><span>向「國際級老師傅」學習</span></h2>
+        </div>
+        <div class="slide-body split-layout">
+          <!-- 左欄：百年企業實績 -->
+          <div class="left-col project-showcase">
+            <div class="showcase-card" style="padding: 40px; height: auto;">
+              <div class="showcase-header">
+                <span class="client-badge" style="font-size: 1.45rem; padding: 8px 20px;"><span>北部百年歷史企業 ─ AI 轉型顧問</span></span>
+                <h4 style="font-size: 2.6rem; margin-top: 10px;"><span>企業全面智能化轉型與賦能</span></h4>
+              </div>
+              <div class="showcase-body" style="margin-top: 20px;">
+                <p style="font-size: 1.6rem; color: var(--text-secondary); margin-bottom: 20px;">
+                  <span>從思維革命到工作流程優化，成功協助企業導入 AI Agent 智能體以提升運營效能：</span>
+                </p>
+                <ul class="danger-list">
+                  <li style="font-size: 1.6rem; margin-bottom: 20px; color: var(--text-primary);">
+                    <span class="num-badge" style="background: rgba(184, 125, 59, 0.05); border-color: var(--accent-gold); color: var(--accent-gold); width: 38px; height: 38px; font-size: 1.2rem;">1</span>
+                    <span class="list-text"><strong>擔任總經理 AI 私人教練</strong>，規劃專屬學習歷程</span>
+                  </li>
+                  <li style="font-size: 1.6rem; margin-bottom: 20px; color: var(--text-primary);">
+                    <span class="num-badge" style="background: rgba(184, 125, 59, 0.05); border-color: var(--accent-gold); color: var(--accent-gold); width: 38px; height: 38px; font-size: 1.2rem;">2</span>
+                    <span class="list-text"><strong>協助將 AI 應用導入重要核心部門員工</strong>，優化整體運營流程</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 右欄：喜憨兒專案實績 -->
+          <div class="right-col project-showcase">
+            <div class="showcase-card" style="padding: 40px; height: auto;">
+              <div class="showcase-header">
+                <span class="client-badge" style="font-size: 1.45rem; padding: 8px 20px; background: rgba(163, 53, 53, 0.05); color: var(--accent-red);"><span>老字號大型喜憨兒機構專案</span></span>
+                <h4 style="font-size: 2.6rem; margin-top: 10px;"><span>全方位數位與社群行銷統籌</span></h4>
+              </div>
+              <div class="showcase-body" style="margin-top: 20px;">
+                <p style="font-size: 1.6rem; color: var(--text-secondary); margin-bottom: 20px;">
+                  <span>建置全新網站、運營系統與社群行銷。用 AI 大幅擴張能力邊界，過去需要一整個團隊，現在：</span>
+                </p>
+                <div class="highlight-result" style="margin-top: 20px; padding: 20px 25px;">
+                  <span style="font-size: 1.25rem; margin-bottom: 6px; font-weight: 700; color: var(--text-secondary);"><span>AI 超級團隊 + 諸天善神守護</span></span>
+                  <strong style="font-size: 2.4rem; color: var(--accent-green); font-weight: 900;"><span>僅憑 2 個人勇往直前！</span></strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 9: 全球 AI 使用分佈 (結合圖片 2) -->
+    <section class="slide" id="slide-9" data-note-index="9">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>09 ─ 分佈</span></div>
+          <h2><span>全球 AI 使用分佈</span></h2>
+        </div>
+        <div class="slide-body split-layout image-left">
+          <div class="left-col image-col">
+            <div class="image-wrapper data-chart-wrapper">
+              <img src="assets/得到App_2026-03-01_19-06-44.png" alt="全球 AI 使用分佈圖" id="ai-distribution-img">
+            </div>
+          </div>
+          <div class="right-col data-col">
+            <p class="lead-text"><span>看懂這張圖，你還需要焦慮嗎？</span></p>
+            <div class="data-legend">
+              <div class="legend-item gray">
+                <span class="pct"><span>84%</span></span>
+                <p><span>灰色：一輩子連碰都沒碰過 AI</span></p>
+              </div>
+              <div class="legend-item green">
+                <span class="pct"><span>16%</span></span>
+                <p><span>綠色：只用過免費版的人</span></p>
+              </div>
+              <div class="legend-item gold">
+                <span class="pct"><span>0.3%</span></span>
+                <p><span>黃色：付費版用戶 (跨入頂尖世界)</span></p>
+              </div>
+              <div class="legend-item red">
+                <span class="pct"><span>0.04%</span></span>
+                <p><span>紅色：善用工具的頂尖開發者 (uses coding scaffold)</span></p>
+              </div>
+            </div>
+            <div class="conclusion-box">
+              <p><span>「只要你願意起步，你就已經是先驅了！」</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 10: 今晚的行動邀請 -->
+    <section class="slide" id="slide-10" data-note-index="10">
+      <div class="slide-content centered-text-layout">
+        <div class="slide-hint"><span>10 ─ 行動</span></div>
+        <div class="badge"><span>行動邀請</span></div>
+        <h2 class="slide-action-title"><span>今天回家，做一件事</span></h2>
+        <div class="action-card">
+          <h3><span>與 AI 討論一個你煩惱已久的決策</span></h3>
+          <p class="action-desc"><span>打開 ChatGPT 或 Claude，不是命令它做事，而是花 5 分鐘和它探討一件你一直沒想清楚的決策。</span></p>
+          <div class="fee-comparison">
+            <div class="fee-item">
+              <strong><span>免費版</span></strong>
+              <span><span>這 16% 的世界足夠讓你驚艷</span></span>
+            </div>
+            <div class="fee-divider"></div>
+            <div class="fee-item vip">
+              <strong><span>付費版</span></strong>
+              <span><span>咖啡錢跨入 0.3% 的黃色頂尖世界</span></span>
+            </div>
+          </div>
+        </div>
+        <p class="action-footer"><span>「你會發現，你公司的天花板、人生的天花板，比你想像的高很多。」</span></p>
+      </div>
+    </section>
+
+    <!-- Slide 11: 科技與信心的智慧 -->
+    <section class="slide" id="slide-11" data-note-index="11">
+      <div class="slide-content quote-layout font-adjust">
+        <div class="slide-hint"><span>11 ─ 真諦</span></div>
+        <div class="quote-symbol">“</div>
+        <blockquote class="medium-quote">
+          <span>「自己幸福很容易，不算什麼。</span><br>
+          <span>要使他人也幸福，才是信心的真諦。」</span>
+        </blockquote>
+        <cite class="quote-author"><span>── 戶田城聖 第二代會長</span></cite>
+        
+        <div class="synergy-box">
+          <div class="synergy-col">
+            <strong><span>科技賦予能力</span></strong>
+            <p><span>AI 讓我成為事業上的「超級個體」</span></p>
+          </div>
+          <div class="synergy-col border-left">
+            <strong><span>信心賦予智慧</span></strong>
+            <p><span>省下時間投入家訪、陪伴、守護會員</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 12: 信心結尾 -->
+    <section class="slide" id="slide-12" data-note-index="12">
+      <div class="japan-sun"></div>
+      <div class="slide-content quote-layout finish-slide">
+        <div class="slide-hint"><span>12 ─ 決意</span></div>
+        <div class="quote-symbol">“</div>
+        <blockquote class="large-quote italic-quote">
+          <span>「喜者，自他共喜也。」</span>
+        </blockquote>
+        
+        <h2 class="final-oath">
+          <span>一生決不退轉，以信心為根本，</span><br>
+          <span>不斷創造勝利實證！</span>
+        </h2>
+        
+        <p class="final-blessing"><span>隨處遊戲無恙，遊行無畏如師子王。感謝大家！</span></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 底部極細進度條 -->
+  <div id="progress-bar"></div>
+
+  <!-- 浮動控制面板 (磨砂玻璃) -->
+  <nav id="control-panel">
+    <button id="btn-prev" class="control-btn" title="上一頁 (← / Backspace)">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    
+    <span id="slide-number">1 / 12</span>
+    
+    <button id="btn-next" class="control-btn" title="下一頁 (→ / Space / Enter)">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+    
+    <div class="panel-divider"></div>
+    
+    <button id="btn-theme" class="control-btn" title="切換亮暗色模式">
+      <span class="theme-icon">☼</span>
+    </button>
+    
+    <button id="btn-notes" class="control-btn" title="開啟/關閉演講小抄備忘錄 (P)">
+      <span class="notes-icon">✍</span>
+    </button>
+    
+    <button id="btn-fullscreen" class="control-btn" title="全螢幕模式 (F)">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+    </button>
+  </nav>
+
+  <!-- 左右隱形點擊熱區 -->
+  <div id="zone-prev" class="click-zone" title="上一頁"></div>
+  <div id="zone-next" class="click-zone" title="下一頁"></div>
+
+  <!-- 演講者小抄面板 (Presenter Notes) -->
+  <aside id="notes-panel" class="hidden">
+    <div class="notes-header">
+      <h3>✍ 演講小抄備忘錄</h3>
+      <button id="btn-notes-close" title="關閉">×</button>
+    </div>
+    <div class="notes-content-area">
+      <!-- 由 JS 動態注入對應的備忘內容 -->
+      <div id="note-content"></div>
+    </div>
+  </aside>
+
+  <!-- 演講小抄文字數據庫 (隱藏) -->
+  <div id="notes-database" style="display: none;">
+    <div data-note-for="1">
+      <p><strong>〔舞台指示〕</strong> 站上講台，面帶微笑，自信環視全場。投影片顯示精美封面。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>各位前輩、社會部先進，大家午安！我是梵亞行銷總經理黃志宏。</li>
+        <li>非常感謝這個機會能與大家分享 AI 專題。</li>
+        <li>今天時間很短（10 分鐘），我不講高深技術，而是想分享作為創價學會社會部員，如何面對 AI 時代。</li>
+      </ul>
+    </div>
+    <div data-note-for="2">
+      <p><strong>〔舞台指示〕</strong> 慢速、字字清晰地念出金句，並與台下前輩進行眼神接觸。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>剛剛學習了第七章的「自他彼此皆幸福」。</li>
+        <li>大聖人御書教示：<strong>「喜者，自他共喜也。」</strong></li>
+        <li>這是我這幾年面對科技變局時最深刻的體會。</li>
+      </ul>
+    </div>
+    <div data-note-for="3">
+      <p><strong>〔舞台指示〕</strong> 語氣加重，手勢朝前，展現積極的信心姿態。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>從 2022 年底 ChatGPT 出世到現在，AI 時代來臨。</li>
+        <li>許多人看到矽谷大廠大裁員，內心難免感到恐慌與焦慮，擔心被取代。</li>
+        <li>但對我而言：<strong>我一點都不害怕，反而無比興奮！</strong></li>
+        <li>底氣來自池田先生的兩句指導：<strong>「先接受、後挑戰」</strong>以及 <strong>「要向青年學習」</strong>。</li>
+        <li>不害怕改變，更率先改變！</li>
+      </ul>
+    </div>
+    <div data-note-for="4">
+      <p><strong>〔舞台指示〕</strong> 切換至觀察頁。語氣轉為誠懇的顧問口吻，與現場中小企業主或經營者產生共鳴。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>梵亞行銷成立超過 10 年，已從數位行銷轉型為 AI 智能化轉型顧問。</li>
+        <li>第一線輔導發現很现实的問題：<strong>絕大部分主管對 AI 認識只在新聞，自己沒用過。</strong></li>
+        <li>引述簡立峰教授：<strong>「這一場 AI 的革命，是老闆自己的革命。」</strong></li>
+      </ul>
+    </div>
+    <div data-note-for="5">
+      <p><strong>〔舞台指示〕</strong> 稍微停頓 1 秒，神情專注、引人深思。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>AI 革命本質上就是一場「生命的變革」（即我們所實踐的人間革命）。</li>
+        <li>如果經營者不先在內心完成這場變革、不改變習慣，組織就無法優化。</li>
+        <li>簡教授直接指出：<strong>「如果老闆自己的工作流程不能優化，那他也沒有能力優化組織。」</strong></li>
+      </ul>
+    </div>
+    <div data-note-for="6">
+      <p><strong>〔舞台指示〕</strong> 指向大螢幕上的馬拉汽車照片，語氣加重、略帶幽默但嚴肅地剖析現狀。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>大家看這張經典照片：一百多年前剛發明汽車時，人們因為思維停留在馬車時代，竟然用馬去拉汽車！</li>
+        <li>今天，老闆自己不用 AI，只叫員工寫寫信、排行程，這就是<strong>「用農業時代的馬，去拉太空時代的汽車！」</strong></li>
+        <li>會導致三大現實狀況：
+          1. 看不到 AI 天花板，不知道改造的極限。
+          2. 不知道哪些業務流程值得用 AI 改造。
+          3. 員工不敢用、不會用，甚至因為怕被加重工作量或導致同事被辭退而偷偷摸摸使用。
+        </li>
+        <li>中小企業的 AI 關鍵，是老闆的業務能力提升先於員工。漏接一個客戶才是真正的損失。</li>
+      </ul>
+    </div>
+    <div data-note-for="7">
+      <p><strong>〔舞台指示〕</strong> 語氣轉為自豪與感恩，指向中教大培育大卡片與右側金句，特別加重「8 位實戰業師」與「4 位優秀青年」。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>簡教授說：<strong>「AI 是隱藏版的國際級老師傅。」</strong>這就是我們的福運。過去三年我每天實作，成功帶領公司轉型。</li>
+        <li>因為這些第一線的實作經驗，我非常榮幸受邀在<strong>臺中教育大學進修推廣部</strong>擔任 AI 課程的<strong>主辦講師</strong>。</li>
+        <li>我們組成了 8 位不同領域實戰業師的強大團隊，其中有 <strong>4 位是優秀的創價青年</strong>！</li>
+        <li>今年成功開辦兩門大課：<strong>「AI應用與社群行銷實務培訓班」</strong>與<strong>「Figma UI UX 設計與 AI 全端開發實戰班」</strong>，為社會培育 AI 尖兵！</li>
+      </ul>
+    </div>
+    <div data-note-for="8">
+      <p><strong>〔舞台指示〕</strong> 展示左右雙軌企業實績卡片，手勢在兩張卡片間流暢移動，並特別加重「總經理 AI 私教」、「2 個人」與「諸天善神」。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>過去三年我每天實作，成功帶領公司轉型為 AI 智能化轉型顧問。</li>
+        <li>去年底更受邀擔任<strong>北部百年歷史企業 AI 轉型顧問</strong>，除了為總經理進行 AI 私教，更協助企業將 AI 應用導入重要核心部門員工。</li>
+        <li>今年三月，我們更南下屏東，接下老字號、極具規模的喜憨兒機構大型專案，建置網站、運營系統與社群行銷。</li>
+        <li>過去需要一整個團隊，現在因為 AI 超級團隊與<strong>諸天善神的守護</strong>，<strong>我們只用 2 個人就勇敢接下重任！</strong></li>
+      </ul>
+    </div>
+    <div data-note-for="9">
+      <p><strong>〔舞台指示〕</strong> 側身指向 AI 人口分佈圖，手勢在黃色極小區塊上停留，語氣轉為鼓舞與激勵。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>大家看這張全球 AI 使用分佈圖，每個格子代表 320 萬人。</li>
+        <li>這片巨大的灰色（<strong>84%</strong>）代表全球一輩子連碰都沒碰過 AI 的人！</li>
+        <li>這片綠色（<strong>16%</strong>）代表只用過免費版的人。</li>
+        <li>而最底下這微弱的黃色（<strong>0.3%</strong>）才是每個月投資 20 美金使用付費版的人。</li>
+        <li>看懂這張圖，還需要焦慮嗎？<strong>只要起步，你就是先驅！</strong></li>
+      </ul>
+    </div>
+    <div data-note-for="10">
+      <p><strong>〔舞台指示〕</strong> 放慢說話速度，向台下發出誠摯的邀請，語氣溫和而堅定。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>我不是要每個人都變成 AI 專家。但我有一個行動邀請：<strong>今天回家，做一件事。</strong></li>
+        <li>打開 ChatGPT 或 Claude，不是叫它做苦工，而是跟它討論一個你最近在思考、煩惱已久且還沒想清楚的決策。給它 5 分鐘。</li>
+        <li>免費版（這 16% 的世界）就足夠讓你驚艷。如果願意花一杯咖啡的錢升級，你將直接跨入這 0.3% 的頂尖世界。</li>
+        <li>你會發現，你公司和人生的天花板，比你想像的高很多！</li>
+      </ul>
+    </div>
+    <div data-note-for="11">
+      <p><strong>〔舞台指示〕</strong> 語氣轉為慎重、莊嚴，雙手合十或做出誠懇手勢。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>但我必須強調：所有的工具都只是放大器。</li>
+        <li>戶田城聖會長指導：<strong>「自己幸福很容易，不算什麼。要使他人也幸福，才是信心的真諦。」</strong></li>
+        <li>這就是：<strong>「科技賦予能力，信心賦予智慧。」</strong></li>
+        <li>AI 讓我成為超級個體，但我最大的收穫，是讓我省下時間，每週一晚上能固定去東勢、新社偏遠地區進行家訪、陪伴、守護會員，投入學會活動！</li>
+      </ul>
+    </div>
+    <div data-note-for="12">
+      <p><strong>〔舞台指示〕</strong> 站直身體，語氣高亢昂揚，充滿決意與力量！結尾深深一鞠躬。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>「喜者，自他共喜也。」</li>
+        <li>進入人生的下半場，我更體會御書所說：<strong>「隨處遊戲無恙，遊行無畏如師子王。」</strong></li>
+        <li>科技再變，如師子王般的信心不變！</li>
+        <li>讓我們善用這個時代賦予的能力，帶著御本尊智慧，無所畏懼朝廣宣流布前進！</li>
+        <li><strong>最後我決意：一生決不退轉，以信心為根本，不斷創造勝利實證！</strong></li>
+        <li>與大家共勉，感恩，謝謝！</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
