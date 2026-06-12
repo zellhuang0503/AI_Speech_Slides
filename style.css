@@ -1368,6 +1368,15 @@ p.lead-text {
 }
 
 /* 15. 4:3 比例與排版細節微調 (優化防切版與字體大小) */
+/* Slide 1 封面標題：放寬容器 + 鎖定單行，讓「自他共喜」與「人間革命」同一行不亂斷 */
+#slide-1 .slide-content {
+  max-width: 100%;
+}
+#slide-1 .main-title {
+  font-size: clamp(3rem, calc(6.8 * var(--vw)), 5.6rem);
+  white-space: nowrap;
+}
+
 /* Slide 4 簡教授金句：縮小字級並鎖定單行，避免斷行 */
 #slide-4 .professor-quote blockquote {
   font-size: clamp(2rem, calc(4 * var(--vw)), 3.1rem);
