@@ -80,8 +80,8 @@ body.light-theme {
 
 /* 中文分組防斷行核心樣式 */
 span {
-  display: inline-block;
-  word-break: keep-all;
+  display: inline;
+  word-break: break-all;
   white-space: normal;
   vertical-align: top;
 }
@@ -155,8 +155,8 @@ span {
   position: absolute;
   top: -15%;
   left: -15%;
-  width: 55vw;
-  height: 55vw;
+  width: calc(55 * var(--vw));
+  height: calc(55 * var(--vw));
   border-radius: 50%;
   background: radial-gradient(circle, rgba(184, 125, 59, 0.07) 0%, rgba(184, 125, 59, 0) 70%);
   z-index: 0;
@@ -168,8 +168,8 @@ span {
   left: auto;
   bottom: -10%;
   right: -10%;
-  width: 35vw;
-  height: 35vw;
+  width: calc(35 * var(--vw));
+  height: calc(35 * var(--vw));
   background: radial-gradient(circle, rgba(46, 90, 54, 0.05) 0%, rgba(46, 90, 54, 0) 70%);
 }
 
@@ -182,6 +182,21 @@ span {
   align-items: center;
   justify-content: center;
   z-index: 3;
+  overflow: hidden;
+}
+
+/* 4:3 簡報舞台容器 */
+.slides-stage {
+  position: relative;
+  width: 1200px;
+  height: 900px;
+  --vw: 12px; /* 1200px / 100 */
+  --vh: 9px;  /* 900px / 100 */
+  transform-origin: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /* 投影片基礎結構 */
@@ -194,12 +209,13 @@ span {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2.2% 4%;
+  padding: 20px 48px;
   opacity: 0;
   pointer-events: none;
   z-index: 1;
   transform: scale(0.99);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
 }
 
 .slide.active {
@@ -229,7 +245,7 @@ span {
 
 .slide-header {
   width: 100%;
-  margin-bottom: 2.5vh;
+  margin-bottom: calc(2.5 * var(--vh));
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -362,7 +378,7 @@ span {
    ========================================================================== */
 h1.main-title {
   font-family: var(--font-title);
-  font-size: clamp(3.8rem, 8.5vw, 7.2rem);
+  font-size: clamp(3.8rem, calc(8.5 * var(--vw)), 7.2rem);
   font-weight: 900;
   line-height: 1.25;
   letter-spacing: -0.01em;
@@ -376,7 +392,7 @@ h1.main-title {
 
 h2 {
   font-family: var(--font-title);
-  font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+  font-size: clamp(2.2rem, calc(5.2 * var(--vw)), 4.2rem);
   font-weight: 900;
   line-height: 1.25;
   letter-spacing: -0.01em;
@@ -385,23 +401,24 @@ h2 {
   background: linear-gradient(135deg, var(--accent-green), #19351F);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  word-break: keep-all;
 }
 
 h3 {
   font-family: var(--font-title);
-  font-size: clamp(2.1rem, 3.5vw, 2.9rem);
+  font-size: clamp(2.1rem, calc(3.5 * var(--vw)), 2.9rem);
   font-weight: 700;
   margin-bottom: 0.8rem;
 }
 
 p {
-  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-size: clamp(1.75rem, calc(3.2 * var(--vw)), 2.5rem);
   line-height: 1.6;
   color: var(--text-secondary);
 }
 
 p.lead-text {
-  font-size: clamp(1.8rem, 3.8vw, 3rem);
+  font-size: clamp(1.8rem, calc(3.8 * var(--vw)), 3rem);
   line-height: 1.55;
   color: var(--text-primary);
   font-weight: 500;
@@ -448,7 +465,7 @@ p.lead-text {
   background-color: var(--bg-secondary);
   border: 1.5px solid var(--bronze-gold);
   color: var(--text-secondary);
-  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-size: clamp(1.2rem, calc(2.2 * var(--vw)), 1.6rem);
   font-weight: 600;
   border-radius: 4px;
   margin-bottom: 2rem;
@@ -470,19 +487,19 @@ p.lead-text {
 }
 
 .author-name {
-  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+  font-size: clamp(1.7rem, calc(3.2 * var(--vw)), 2.5rem);
   color: var(--text-primary);
   font-weight: 700;
 }
 
 .author-title {
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  font-size: clamp(1.25rem, calc(2.2 * var(--vw)), 1.6rem);
   color: var(--text-secondary);
   margin-top: 6px;
 }
 
 .location-info {
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-size: clamp(1.15rem, calc(2 * var(--vw)), 1.45rem);
   color: var(--text-secondary);
   margin-top: 20px;
   opacity: 0.9;
@@ -508,7 +525,7 @@ p.lead-text {
 
 .large-quote {
   font-family: var(--font-title);
-  font-size: clamp(3rem, 6.2vw, 5.2rem);
+  font-size: clamp(3rem, calc(6.2 * var(--vw)), 5.2rem);
   font-weight: 900;
   line-height: 1.5;
   color: var(--text-primary);
@@ -518,7 +535,7 @@ p.lead-text {
 
 .medium-quote {
   font-family: var(--font-title);
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-size: clamp(2.4rem, calc(5 * var(--vw)), 3.8rem);
   font-weight: 900;
   line-height: 1.5;
   color: var(--text-primary);
@@ -613,7 +630,7 @@ p.lead-text {
 .lead-text.full-width {
   width: 100%;
   text-align: left;
-  margin-bottom: 4vh;
+  margin-bottom: calc(4 * var(--vh));
   max-width: 1100px;
 }
 
@@ -679,7 +696,7 @@ p.lead-text {
 }
 
 .guideline-card p {
-  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+  font-size: clamp(1.3rem, calc(2.2 * var(--vw)), 1.6rem);
 }
 
 /* 置中文字焦點盒 */
@@ -690,7 +707,7 @@ p.lead-text {
 }
 
 .accent-text {
-  font-size: clamp(1.9rem, 3.8vw, 2.8rem);
+  font-size: clamp(1.9rem, calc(3.8 * var(--vw)), 2.8rem);
   font-weight: 700;
   line-height: 1.5;
   color: var(--text-primary);
@@ -708,7 +725,7 @@ p.lead-text {
 
 .professor-quote blockquote {
   font-family: var(--font-title);
-  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-size: clamp(2.2rem, calc(4.5 * var(--vw)), 3.5rem);
   font-weight: 900;
   margin-top: 8px;
 }
@@ -731,7 +748,7 @@ p.lead-text {
 }
 
 .callout-desc {
-  font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+  font-size: clamp(1.8rem, calc(3.8 * var(--vw)), 2.8rem);
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.45;
@@ -745,14 +762,15 @@ p.lead-text {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-bottom: 2vh;
+  margin-bottom: calc(2 * var(--vh));
 }
 
 .car-comparison span {
+  display: inline-block;
   padding: 8px 18px;
   border-radius: 4px;
   font-weight: 700;
-  font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+  font-size: clamp(1.2rem, calc(2.4 * var(--vw)), 1.8rem);
 }
 
 .car-comparison .bad {
@@ -774,8 +792,8 @@ p.lead-text {
   color: var(--text-primary);
   font-family: var(--font-title);
   font-weight: 700;
-  font-size: clamp(1.4rem, 2.6vw, 2rem);
-  margin-bottom: 2vh;
+  font-size: clamp(1.4rem, calc(2.6 * var(--vw)), 2rem);
+  margin-bottom: calc(2 * var(--vh));
 }
 
 .danger-list {
@@ -785,9 +803,9 @@ p.lead-text {
 .danger-list li {
   display: flex;
   align-items: flex-start;
-  font-size: clamp(1.85rem, 3.8vw, 2.85rem); /* 極致大字體，高清晰 */
+  font-size: clamp(1.85rem, calc(3.8 * var(--vw)), 2.85rem); /* 極致大字體，高清晰 */
   color: var(--text-primary); /* 改為高對比主要文字色 */
-  margin-bottom: 2.8vh; /* 大氣行距 */
+  margin-bottom: calc(2.8 * var(--vh)); /* 大氣行距 */
   line-height: 1.5;
 }
 
@@ -849,12 +867,12 @@ p.lead-text {
 }
 
 #mail-car-img {
-  max-height: 58vh;
+  max-height: calc(58 * var(--vh));
   object-fit: contain;
 }
 
 #ai-distribution-img {
-  max-height: 65vh;
+  max-height: calc(65 * var(--vh));
   object-fit: contain;
 }
 
@@ -945,7 +963,7 @@ p.lead-text {
   margin: 2rem 0;
   display: flex;
   flex-direction: column;
-  gap: 1.5vh;
+  gap: calc(1.5 * var(--vh));
   width: 100%;
 }
 
@@ -959,14 +977,14 @@ p.lead-text {
 .legend-item .pct {
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  font-size: clamp(2rem, 3.8vw, 2.6rem);
+  font-size: clamp(2rem, calc(3.8 * var(--vw)), 2.6rem);
   min-width: 160px; /* 寬裕的最小寬度，保證 0.04% 絕不與右邊文字重疊！ */
   flex-shrink: 0;
   text-align: left;
 }
 
 .legend-item p {
-  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-size: clamp(1.3rem, calc(2.2 * var(--vw)), 1.7rem);
   font-weight: 600;
   color: var(--text-secondary);
   margin: 0;
@@ -1024,7 +1042,7 @@ p.lead-text {
 
 .fee-item {
   flex: 1;
-  max-width: 280px;
+  max-width: 380px;
 }
 
 .fee-item strong {
@@ -1043,6 +1061,7 @@ p.lead-text {
   font-size: 1.25rem;
   color: var(--text-secondary);
   line-height: 1.4;
+  white-space: nowrap;
 }
 
 .fee-divider {
@@ -1089,9 +1108,10 @@ p.lead-text {
 }
 
 .synergy-col p {
-  font-size: 1.85rem;
+  font-size: 1.55rem;
   color: var(--text-primary);
   line-height: 1.5;
+  white-space: nowrap;
 }
 
 /* Slide 11: 信心結尾 */
@@ -1101,7 +1121,7 @@ p.lead-text {
 
 .final-oath {
   font-family: var(--font-title);
-  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+  font-size: clamp(2.6rem, calc(5.5 * var(--vw)), 4.4rem);
   font-weight: 900;
   line-height: 1.45;
   color: var(--accent-green);
@@ -1120,7 +1140,7 @@ p.lead-text {
 
 /* font-adjust */
 .font-adjust .medium-quote {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-size: clamp(2.2rem, calc(5 * var(--vw)), 3.8rem);
 }
 
 /* 12. 進度條 */
@@ -1345,6 +1365,55 @@ p.lead-text {
 
 .notes-content-area strong {
   color: var(--accent-green);
+}
+
+/* 15. 4:3 比例與排版細節微調 (優化防切版與字體大小) */
+/* Slide 4 簡教授金句：縮小字級並鎖定單行，避免斷行 */
+#slide-4 .professor-quote blockquote {
+  font-size: clamp(2rem, calc(4 * var(--vw)), 3.1rem);
+  white-space: nowrap;
+}
+
+/* Slide 5 生命的變革 左右對等微調 */
+#slide-5 .split-layout {
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 3%;
+}
+#slide-5 .warning-callout {
+  padding: 24px 28px;
+}
+#slide-5 .callout-desc {
+  font-size: clamp(1.6rem, calc(3.2 * var(--vw)), 2.3rem);
+}
+
+/* Slide 7 變革的代價 字體與間距微調 */
+#slide-7 .danger-list li {
+  font-size: clamp(1.6rem, calc(3.2 * var(--vw)), 2.2rem) !important;
+  margin-bottom: calc(2.4 * var(--vh)) !important;
+}
+
+/* Slide 8 & 9 專案實績卡片在 4:3 比例下防溢出優化 */
+#slide-8 .showcase-card,
+#slide-9 .showcase-card {
+  padding: 22px 26px !important;
+}
+#slide-8 h4,
+#slide-9 h4 {
+  font-size: 2.0rem !important;
+}
+#slide-8 .danger-list li,
+#slide-9 .danger-list li {
+  font-size: 1.4rem !important;
+  margin-bottom: 8px !important;
+}
+#slide-8 .danger-list li .num-badge,
+#slide-9 .danger-list li .num-badge {
+  width: 30px !important;
+  height: 30px !important;
+  font-size: 1.0rem !important;
+}
+#slide-9 .highlight-result strong {
+  font-size: 1.95rem !important;
 }
 
 /* 16. 列印樣式 */

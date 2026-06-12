@@ -27,8 +27,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalSlides = slides.length;
   let panelTimeout = null;
 
+  // 調整簡報舞台等比縮放
+  function adjustSlideScale() {
+    const stage = document.querySelector('.slides-stage');
+    if (!stage) return;
+    
+    const baseWidth = 1200;
+    const baseHeight = 900;
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    
+    const scaleX = windowWidth / baseWidth;
+    const scaleY = windowHeight / baseHeight;
+    const scale = Math.min(scaleX, scaleY);
+    
+    stage.style.transform = `scale(${scale})`;
+  }
+
   // 初始化
   function init() {
+    // 進行舞台縮放調整
+    adjustSlideScale();
+    
     // 優先從 URL Hash 讀取頁碼 (e.g. #3 表示第 3 頁，即 index = 2)
     const hash = window.location.hash;
     if (hash && hash.startsWith('#slide-')) {
@@ -162,12 +182,16 @@ document.addEventListener('DOMContentLoaded', () => {
       
       switch (e.key) {
         case 'ArrowRight':
+        case 'ArrowDown':
+        case 'PageDown':
         case ' ':
         case 'Enter':
           e.preventDefault();
           nextSlide();
           break;
         case 'ArrowLeft':
+        case 'ArrowUp':
+        case 'PageUp':
         case 'Backspace':
           e.preventDefault();
           prevSlide();
@@ -275,6 +299,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
+
+    // 9. 監聽視窗 resize，進行等比縮放
+    window.addEventListener('resize', adjustSlideScale);
   }
 
   // 執行初始化
