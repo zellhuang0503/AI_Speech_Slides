@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 時代的「生命大保養」 ─ 黃志宏專題分享 2026.09.12</title>
+  <link rel="stylesheet" href="style.css?v=20260912a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;500;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* 本場專用補充樣式 */
+    .command-card { padding: 34px 44px; max-width: 1000px; margin: 1.2rem 0; text-align: center; }
+    .command-label { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent-gold); margin-bottom: 14px; }
+    .command-text { font-family: var(--font-title); font-weight: 900; font-size: clamp(1.9rem, calc(3.6 * var(--vw)), 2.5rem); line-height: 1.5; color: var(--text-primary); }
+    .icon-row { display: flex; justify-content: center; gap: 36px; margin-top: 1.4rem; flex-wrap: wrap; }
+    .icon-chip { display: flex; align-items: center; gap: 10px; padding: 10px 22px; border-radius: 999px; border: 1.5px solid var(--card-border); background: var(--glass-bg); font-size: 1.35rem; font-weight: 700; color: var(--text-secondary); }
+    .icon-chip .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent-green); }
+    .icon-chip.gold .dot { background: var(--accent-gold); }
+    .icon-chip.red .dot { background: var(--accent-red); }
+    .flow-row { display: flex; align-items: center; justify-content: center; gap: 18px; width: 100%; flex-wrap: nowrap; }
+    .flow-node { padding: 22px 26px; border-radius: 8px; border: 1.5px solid var(--card-border); background: var(--glass-bg); box-shadow: var(--card-shadow); text-align: center; min-width: 150px; }
+    .flow-node .t { display: block; font-weight: 900; font-size: 1.5rem; font-family: var(--font-title); color: var(--text-primary); }
+    .flow-node .d { display: block; font-size: 1.05rem; color: var(--text-secondary); margin-top: 6px; line-height: 1.4; }
+    .flow-node.boss { border-color: var(--accent-gold); }
+    .flow-node.result { border-color: var(--accent-green); }
+    .flow-arrow { font-size: 2.2rem; color: var(--bronze-gold); font-weight: 300; }
+    .flow-agents { display: flex; flex-direction: column; gap: 12px; }
+    .flow-agents .flow-node { padding: 12px 22px; min-width: 190px; }
+    .video-box { width: 100%; max-width: 840px; aspect-ratio: 16 / 9; background: #0e1012; border-radius: 8px; border: 1px solid var(--card-border); box-shadow: var(--card-shadow); overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
+    .video-box video { width: 100%; height: 100%; object-fit: contain; }
+    .video-fallback { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #cfd3d8; font-size: 1.3rem; gap: 8px; pointer-events: none; }
+    .visit-list { list-style: none; padding: 0; margin: 0; width: 100%; display: flex; flex-direction: column; gap: 12px; }
+    .visit-list li { display: flex; align-items: center; gap: 16px; padding: 12px 18px; border-radius: 6px; border: 1.5px solid var(--card-border); background: var(--glass-bg); font-size: 1.3rem; }
+    .visit-list .day { font-family: 'Outfit', sans-serif; font-weight: 800; color: var(--accent-gold); min-width: 92px; }
+    .visit-list .who { font-weight: 700; color: var(--text-primary); min-width: 200px; }
+    .visit-list .why { color: var(--text-secondary); font-size: 1.1rem; }
+    .visit-list li.member { border-left: 5px solid var(--accent-green); }
+    .three-answer .guideline-card h3 { font-size: 1.6rem; }
+    .three-answer .guideline-card p { font-size: 1.25rem; line-height: 1.55; }
+    .three-answer .guideline-card .tag { display: inline-block; font-size: 1rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; margin-bottom: 10px; color: #fff; background: var(--accent-green); }
+    .three-answer .guideline-card .tag.warn { background: var(--accent-red); }
+    .three-answer .guideline-card .tag.gold { background: var(--accent-gold); }
+  </style>
+</head>
+<body class="light-theme">
+
+  <svg style="display: none;">
+    <filter id="washi-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.035 0" />
+    </filter>
+  </svg>
+  <div class="washi-texture-layer"></div>
+  <div class="particles-container">
+    <div class="particle leaf-1"></div><div class="particle gold-1"></div>
+    <div class="particle leaf-2"></div><div class="particle gold-2"></div>
+    <div class="particle leaf-3"></div><div class="particle gold-3"></div>
+    <div class="particle leaf-4"></div><div class="particle gold-4"></div>
+    <div class="particle leaf-5"></div><div class="particle gold-5"></div>
+  </div>
+
+  <main id="slider-container">
+    <div class="slides-stage">
+
+    <!-- Slide 1: 封面 -->
+    <section class="slide active" id="slide-1" data-note-index="1">
+      <div class="japan-sun"></div>
+      <div class="slide-content center-layout">
+        <div class="subtitle-badge"><span>2026 台中社會部學習會 ─ 信心掌舵・勝利出發</span></div>
+        <h1 class="main-title">
+          <span>AI 時代的</span><br>
+          <span class="highlight-green">「生命大保養」</span>
+        </h1>
+        <p class="lead-text" style="text-align:center; font-size:1.9rem; margin-top:0.4rem;"><span>老闆先養好自己，才能守護他人</span></p>
+        <div class="author-info">
+          <p class="author-name"><span>分享者：黃志宏</span></p>
+          <p class="author-title"><span>梵亞行銷有限公司 總經理</span></p>
+          <p class="author-title"><span>學會使命：台中北區豐原本部 本部長</span></p>
+          <p class="location-info"><span>2026.09.12 ─ 金弘笙講堂</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: 回顧 -->
+    <section class="slide" id="slide-2" data-note-index="2">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>02 ─ 回顧</span></div>
+          <div class="badge"><span>六月的分享</span></div>
+          <h2><span>從「老闆的革命」到「老闆的保養」</span></h2>
+        </div>
+        <div class="slide-body split-layout">
+          <div class="left-col">
+            <div class="professor-quote" style="margin-top:0; font-size:0.8em;">
+              <span class="quote-label"><span>上次我們談的是：</span></span>
+              <blockquote style="font-size:2.1rem; line-height:1.5;"><span>「這一場 AI 的革命，</span><br><span>是</span><span class="highlight-gold">老闆自己的革命</span><span>。」</span></blockquote>
+            </div>
+            <p class="lead-text" style="margin-top:1.5rem; font-size:1.5rem; color:var(--text-secondary);"><span>回家做一件事：和 AI 討論一個煩惱已久的決策。</span></p>
+          </div>
+          <div class="right-col vertical-flow">
+            <div class="warning-callout" style="border-left:6px solid var(--accent-green); background: rgba(46, 90, 54, 0.03);">
+              <p class="callout-title" style="color:var(--accent-green);"><span>今天更進一步</span></p>
+              <p class="callout-desc" style="font-family:var(--font-title); font-weight:900; font-size:2.4rem; line-height:1.5;"><span>老闆自己先「大保養」，</span><br><span>公司才有本錢守護別人。</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: 觀念 ─ 三樣透支 -->
+    <section class="slide" id="slide-3" data-note-index="3">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>03 ─ 觀念</span></div>
+          <h2><span>老闆最常透支的三樣東西</span></h2>
+        </div>
+        <div class="slide-body vertical-layout">
+          <p class="lead-text full-width" style="font-size:1.7rem;"><span>不是錢，也不是能力，而是每天默默被工作吃掉的：</span></p>
+          <div class="grid-three-cols">
+            <div class="guideline-card">
+              <h3><span>睡眠</span></h3>
+              <p><span>晚上十一點還在回客戶的信、看報表。</span></p>
+            </div>
+            <div class="guideline-card">
+              <h3><span>體力</span></h3>
+              <p><span>一天開四場會，回到家只剩下累。</span></p>
+            </div>
+            <div class="guideline-card highlight-border">
+              <h3><span>陪伴</span></h3>
+              <p><span>家人、會員、該去的家訪，總是「下週再說」。</span></p>
+            </div>
+          </div>
+          <p class="lead-text full-width" style="margin-top:1.8rem; color:var(--accent-red); font-family:var(--font-title); font-weight:700;"><span>燈泡壞了，老闆不必每次自己爬梯子。</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: 觀念 ─ 用嘴巴指揮一個 AI 團隊 -->
+    <section class="slide" id="slide-4" data-note-index="4">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>04 ─ 工具</span></div>
+          <div class="badge"><span>2026 年的新能力</span></div>
+          <h2><span>用嘴巴，指揮一整組 AI 團隊</span></h2>
+        </div>
+        <div class="slide-body vertical-layout" style="justify-content:center;">
+          <div class="flow-row">
+            <div class="flow-node boss"><span class="t">老闆說一句話</span><span class="d">不用打字、不用開電腦</span></div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-node"><span class="t">AI 總管</span><span class="d">聽懂、拆工作、派任務</span></div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-agents">
+              <div class="flow-node"><span class="t">代理 A</span><span class="d">查行事曆</span></div>
+              <div class="flow-node"><span class="t">代理 B</span><span class="d">讀信箱</span></div>
+              <div class="flow-node"><span class="t">代理 C</span><span class="d">整理待辦</span></div>
+            </div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-node result"><span class="t">一份結果</span><span class="d">唸給老闆聽，老闆只做核准</span></div>
+          </div>
+          <p class="lead-text full-width" style="margin-top:2.4rem; text-align:center; font-size:1.7rem;"><span>三個代理同時做事，老闆的時間從「做」變成「決定」。</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: 示範 1 -->
+    <section class="slide" id="slide-5" data-note-index="5">
+      <div class="slide-content centered-text-layout">
+        <div class="slide-hint"><span>05 ─ 示範一</span></div>
+        <div class="badge"><span>現場示範 1</span></div>
+        <h2 class="section-title"><span>通勤路上的語音晨報</span></h2>
+        <div class="focus-box command-card">
+          <div class="command-label"><span>老闆只說這一句</span></div>
+          <div class="command-text"><span>「今天的行程、要回的信、</span><br><span>快到期的待辦，唸給我聽。」</span></div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-chip"><span class="dot"></span><span>行事曆</span></div>
+          <div class="icon-chip gold"><span class="dot"></span><span>信箱</span></div>
+          <div class="icon-chip red"><span class="dot"></span><span>待辦清單</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: 示範 2 -->
+    <section class="slide" id="slide-6" data-note-index="6">
+      <div class="slide-content centered-text-layout">
+        <div class="slide-hint"><span>06 ─ 示範二</span></div>
+        <div class="badge"><span>現場示範 2</span></div>
+        <h2 class="section-title"><span>會後五分鐘交辦</span></h2>
+        <div class="focus-box command-card">
+          <div class="command-label"><span>會議一結束，走去下一個行程的路上</span></div>
+          <div class="command-text"><span>「剛剛的會議紀錄整理成待辦，</span><br><span>分給三位主管，各發一封信，</span><br><span>週五提醒我追。」</span></div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-chip"><span class="dot"></span><span>會議摘要</span></div>
+          <div class="icon-chip gold"><span class="dot"></span><span>三封交辦信</span></div>
+          <div class="icon-chip red"><span class="dot"></span><span>週五提醒</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: 小結 -->
+    <section class="slide" id="slide-7" data-note-index="7">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>07 ─ 小結</span></div>
+          <h2><span>剛剛的兩分鐘，發生了什麼？</span></h2>
+        </div>
+        <div class="slide-body vertical-layout" style="justify-content:center;">
+          <div class="grid-three-cols">
+            <div class="guideline-card">
+              <h3><span>全程沒碰鍵盤</span></h3>
+              <p><span>開車、走路、等電梯都能做。</span></p>
+            </div>
+            <div class="guideline-card">
+              <h3><span>三個代理齊動</span></h3>
+              <p><span>行事曆、信箱、待辦，不是一件一件排隊。</span></p>
+            </div>
+            <div class="guideline-card highlight-border">
+              <h3><span>老闆只做核准</span></h3>
+              <p><span>該花腦筋的地方，留給人。</span></p>
+            </div>
+          </div>
+          <div class="conclusion-box" style="margin-top:2rem;">
+            <p><span>「晚上那兩小時的整理，還給了睡眠。」</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: 製造業影片 -->
+    <section class="slide" id="slide-8" data-note-index="8">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>08 ─ 製造業</span></div>
+          <div class="badge"><span>工廠也一樣</span></div>
+          <h2><span>廠區巡視中的急單判斷</span></h2>
+        </div>
+        <div class="slide-body vertical-layout" style="justify-content:center; align-items:center; gap: 16px;">
+          <div class="video-box">
+            <video id="v1" src="assets/V1_急單判斷.mp4" controls preload="metadata" playsinline></video>
+            <div class="video-fallback" id="v1-fallback"><span>影片：V1_急單判斷.mp4</span><span style="font-size:1rem;">（尚未放入 assets 資料夾）</span></div>
+          </div>
+          <p class="lead-text full-width" style="text-align:center; font-size:1.4rem; margin:0 0 3rem;"><span>「鈺豐要把 3,000 件提前到 9/26。看排程、料件、成本，能不能接？」</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 9: 三個代理，一個答案 -->
+    <section class="slide" id="slide-9" data-note-index="9">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>09 ─ 製造業</span></div>
+          <h2><span>三個代理，一個答案</span></h2>
+        </div>
+        <div class="slide-body vertical-layout three-answer" style="justify-content:center;">
+          <div class="grid-three-cols">
+            <div class="guideline-card">
+              <span class="tag">排程代理</span>
+              <h3><span>車床做得完</span></h3>
+              <p><span>三台 CNC 負載六成，加班兩小時可在 9/25 完成。</span></p>
+            </div>
+            <div class="guideline-card">
+              <span class="tag warn">料件代理</span>
+              <h3><span>電鍍線卡住</span></h3>
+              <p><span>電鍍線被另一批訂單佔滿；棒材少 150 公斤，三天可到。</span></p>
+            </div>
+            <div class="guideline-card">
+              <span class="tag gold">成本代理</span>
+              <h3><span>毛利算得出</span></h3>
+              <p><span>電鍍外包加加班，毛利降到 <span style="white-space:nowrap">15.7 元</span>；收 8% 加急費回到 <span style="white-space:nowrap">22.5 元</span>。</span></p>
+            </div>
+          </div>
+          <div class="conclusion-box" style="margin-top:1.8rem;">
+            <p><span>結論：可以接。9/26 交貨，電鍍外包，報 8% 加急費。</span></p>
+          </div>
+          <p class="lead-text full-width" style="text-align:center; margin-top:1rem; font-size:1.4rem; color:var(--text-secondary);"><span>以前要生管、採購、會計三個人開一場會。現在，老闆在產線上一句話。</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 10: 守護行程 -->
+    <section class="slide" id="slide-10" data-note-index="10">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>10 ─ 守護</span></div>
+          <div class="badge"><span>月初的一句話</span></div>
+          <h2><span>這個月的守護行程</span></h2>
+        </div>
+        <div class="slide-body split-layout">
+          <div class="left-col vertical-flow" style="justify-content:center;">
+            <div class="focus-box command-card" style="margin:0; padding:28px 30px;">
+              <div class="command-label"><span>老闆說</span></div>
+              <div class="command-text" style="font-size:1.85rem;"><span>「這個月三家客戶、兩位會員要去看。幫我排路線、抓時間，每個人準備關心重點。」</span></div>
+            </div>
+          </div>
+          <div class="right-col vertical-flow" style="justify-content:center;">
+            <ul class="visit-list">
+              <li><span class="day">9/14 一</span><span class="who">彰化 順達工業</span><span class="why">季度拜訪、新品規格</span></li>
+              <li><span class="day">9/17 四</span><span class="who">台中 大成機械</span><span class="why">客訴收尾，親自致意</span></li>
+              <li><span class="day">9/24 四</span><span class="who">鈺豐科技</span><span class="why">急單出貨前確認</span></li>
+              <li class="member"><span class="day">9/11 四</span><span class="who">東勢 陳伯伯</span><span class="why">身體近況、兒子創業</span></li>
+              <li class="member"><span class="day">9/12 六</span><span class="who">新社 林太太</span><span class="why">女兒下週開學</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 11: 真諦 -->
+    <section class="slide" id="slide-11" data-note-index="11">
+      <div class="slide-content quote-layout font-adjust">
+        <div class="slide-hint"><span>11 ─ 真諦</span></div>
+        <div class="quote-symbol">“</div>
+        <blockquote class="medium-quote">
+          <span>「科技賦予能力，</span><br>
+          <span>信心賦予智慧。」</span>
+        </blockquote>
+        <cite class="quote-author"><span>── 省下來的時間，才是真正的收穫</span></cite>
+        <div class="synergy-box">
+          <div class="synergy-col">
+            <strong><span>還給自己</span></strong>
+            <p><span>睡眠、體力、和家人吃一頓不看手機的晚餐</span></p>
+          </div>
+          <div class="synergy-col border-left">
+            <strong><span>還給他人</span></strong>
+            <p><span>家訪、陪伴、守護需要鼓勵的會員</span></p>
+          </div>
+        </div>
+        <p class="quote-lead" style="margin-top:1.8rem;"><span>〈面對疾病〉教我們以生命為本。老闆先養好生命，才守得住別人。</span></p>
+      </div>
+    </section>
+
+    <!-- Slide 12: 行動邀請 -->
+    <section class="slide" id="slide-12" data-note-index="12">
+      <div class="slide-content centered-text-layout">
+        <div class="slide-hint"><span>12 ─ 行動</span></div>
+        <div class="badge"><span>行動邀請</span></div>
+        <h2 class="slide-action-title"><span>今晚睡前，做一件事</span></h2>
+        <div class="action-card">
+          <h3><span>對手機說出明天的行程和三件待辦</span></h3>
+          <p class="action-desc"><span>打開 ChatGPT 語音，把明天要做的事說一遍，請它整理好唸回來給你聽。</span></p>
+          <div class="fee-comparison">
+            <div class="fee-item">
+              <strong><span>免費版就夠</span></strong>
+              <span><span>不用設定、不用打字</span></span>
+            </div>
+            <div class="fee-divider"></div>
+            <div class="fee-item vip">
+              <strong><span>然後放下手機</span></strong>
+              <span><span>早點睡，這就是保養</span></span>
+            </div>
+          </div>
+        </div>
+        <p class="action-footer"><span>「明天早上，你會發現腦袋比平常清楚很多。」</span></p>
+      </div>
+    </section>
+
+    <!-- Slide 13: 決意 -->
+    <section class="slide" id="slide-13" data-note-index="13">
+      <div class="japan-sun"></div>
+      <div class="slide-content quote-layout finish-slide">
+        <div class="slide-hint"><span>13 ─ 決意</span></div>
+        <div class="quote-symbol">“</div>
+        <blockquote class="large-quote italic-quote">
+          <span>「喜者，自他共喜也。」</span>
+        </blockquote>
+        <h2 class="final-oath">
+          <span>養好自己的生命，</span><br>
+          <span>成為守護他人的力量。</span>
+        </h2>
+        <p class="final-blessing"><span>一生決不退轉，不斷創造勝利實證。感謝大家！</span></p>
+      </div>
+    </section>
+
+    </div>
+  </main>
+
+  <div id="progress-bar"></div>
+
+  <nav id="control-panel">
+    <button id="btn-prev" class="control-btn" title="上一頁 (← / Backspace)">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <span id="slide-number">1 / 13</span>
+    <button id="btn-next" class="control-btn" title="下一頁 (→ / Space / Enter)">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+    <div class="panel-divider"></div>
+    <button id="btn-theme" class="control-btn" title="切換亮暗色模式"><span class="theme-icon">☼</span></button>
+    <button id="btn-notes" class="control-btn" title="開啟/關閉演講小抄備忘錄 (P)"><span class="notes-icon">✍</span></button>
+    <button id="btn-fullscreen" class="control-btn" title="全螢幕模式 (F)">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+    </button>
+  </nav>
+
+  <div id="zone-prev" class="click-zone" title="上一頁"></div>
+  <div id="zone-next" class="click-zone" title="下一頁"></div>
+
+  <aside id="notes-panel" class="hidden">
+    <div class="notes-header">
+      <h3>✍ 演講小抄備忘錄</h3>
+      <button id="btn-notes-close" title="關閉">×</button>
+    </div>
+    <div class="notes-content-area">
+      <div id="note-content"></div>
+    </div>
+  </aside>
+
+  <div id="notes-database" style="display: none;">
+    <div data-note-for="1">
+      <p><strong>〔時間〕</strong> 0:00–0:20</p>
+      <p><strong>〔舞台指示〕</strong> 站定、微笑、環視全場。不急著講。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>各位前輩、社會部先進，大家早安！我是梵亞行銷黃志宏。</li>
+        <li>六月跟大家分享過一次，今天再給我十二分鐘，講一個更貼近今天教材的題目：<strong>AI 時代的生命大保養</strong>。</li>
+      </ul>
+    </div>
+    <div data-note-for="2">
+      <p><strong>〔時間〕</strong> 0:20–1:30</p>
+      <p><strong>〔舞台指示〕</strong> 手勢先指左邊（上次），再指右邊（今天）。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>六月我引用簡立峰教授的話：<strong>「這一場 AI 的革命，是老闆自己的革命。」</strong>當時請大家回家跟 AI 討論一個煩惱已久的決策。</li>
+        <li>有做的前輩請舉個手。（停一秒，笑）</li>
+        <li>今天要更進一步。今天的教材是〈面對疾病〉，邀請函上寫「為生命進行大保養」。我想談的是：<strong>老闆自己先大保養，公司才有本錢守護別人。</strong></li>
+      </ul>
+    </div>
+    <div data-note-for="3">
+      <p><strong>〔時間〕</strong> 1:30–2:20</p>
+      <p><strong>〔舞台指示〕</strong> 語氣誠懇，講自己的經驗，不說教。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>當老闆的，最常透支的不是錢，是三樣東西：<strong>睡眠、體力、陪伴。</strong></li>
+        <li>晚上十一點還在回信；一天四場會，回家只剩下累；家訪、陪家人，永遠「下週再說」。</li>
+        <li>大雄部長說「不要怕遇到壞掉的燈泡」。我要補一句：<strong>燈泡壞了，老闆不必每次自己爬梯子。</strong></li>
+      </ul>
+    </div>
+    <div data-note-for="4">
+      <p><strong>〔時間〕</strong> 2:20–3:00</p>
+      <p><strong>〔舞台指示〕</strong> 沿著圖從左講到右，速度放慢。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>今年七月開始，AI 有一個新能力：<strong>用嘴巴指揮一整組 AI 團隊。</strong></li>
+        <li>老闆說一句話，AI 總管聽懂、拆工作，派給三個代理同時去做：一個查行事曆、一個讀信箱、一個整理待辦，最後合成一份結果唸給你聽。</li>
+        <li>老闆的時間，從「做」變成「決定」。接下來我直接做給大家看。</li>
+      </ul>
+    </div>
+    <div data-note-for="5">
+      <p><strong>〔時間〕</strong> 3:00–5:00（Live，最多 2 分鐘，超過切備援影片 B1）</p>
+      <p><strong>〔舞台指示〕</strong> 拿起手機或對筆電，照著螢幕上的句子唸，不要加字。等待時面向觀眾說話，不要盯螢幕。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>情境：早上開車去工廠的路上。</li>
+        <li>唸指令：<strong>「今天的行程、要回的信、快到期的待辦，唸給我聽。」</strong></li>
+        <li>等待時說：現在三個代理同時在跑，一個看行事曆、一個看信箱、一個看待辦。</li>
+        <li>結果出來後，挑一個亮點口頭補充（例如：它主動提醒鈺豐急單今天要回覆）。</li>
+        <li>可選追問：「大成機械的客訴，幫我先擬一封回信，語氣誠懇。」</li>
+      </ul>
+    </div>
+    <div data-note-for="6">
+      <p><strong>〔時間〕</strong> 5:00–7:00（Live，最多 2 分鐘，超過切備援影片 B2）</p>
+      <p><strong>〔舞台指示〕</strong> 同上。強調「人已經在走去下一個行程的路上」。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>情境：主管會議剛結束，我正走去下一個行程。以前晚上要花兩小時整理紀錄、寫信、設提醒。</li>
+        <li>唸指令：<strong>「剛剛的會議紀錄整理成待辦，分給三位主管，各發一封信，週五提醒我追。」</strong></li>
+        <li>結果出來後指出：三封信各自不同、待辦有日期、週五的提醒已經設好。</li>
+        <li>強調：<strong>我只做一件事，核准。</strong></li>
+      </ul>
+    </div>
+    <div data-note-for="7">
+      <p><strong>〔時間〕</strong> 7:00–7:30</p>
+      <p><strong>〔舞台指示〕</strong> 快，三點各一句。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>剛剛兩分鐘發生了三件事：全程沒碰鍵盤、三個代理同時動、老闆只做核准。</li>
+        <li><strong>晚上那兩小時的整理，還給了睡眠。</strong></li>
+      </ul>
+    </div>
+    <div data-note-for="8">
+      <p><strong>〔時間〕</strong> 7:30–8:45（影片 60 秒）</p>
+      <p><strong>〔舞台指示〕</strong> 按下播放後退到旁邊，讓影片講。影片結束再接話。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>中部很多前輩是做製造的。有人會想：這是服務業的東西吧？我們看一個工廠的例子。</li>
+        <li>情境：老闆在產線上巡視，客戶打來要把 3,000 件提前兩週交。以前要生管、採購、會計三個人開會。</li>
+        <li>（播放影片）</li>
+      </ul>
+    </div>
+    <div data-note-for="9">
+      <p><strong>〔時間〕</strong> 8:45–9:30</p>
+      <p><strong>〔舞台指示〕</strong> 三張卡片由左到右各一句，結論加重。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>排程代理說：車床做得完，加班兩小時。</li>
+        <li>料件代理說：電鍍線卡住，要外包；棒材少 150 公斤，三天可到。</li>
+        <li>成本代理說：外包加加班，毛利掉到 15.7 元；收 8% 加急費，回到 22.5 元。</li>
+        <li><strong>結論：可以接，9/26 交貨，電鍍外包，報 8% 加急費。</strong>老闆在產線上一句話，答案就出來。</li>
+      </ul>
+    </div>
+    <div data-note-for="10">
+      <p><strong>〔時間〕</strong> 9:30–10:30</p>
+      <p><strong>〔舞台指示〕</strong> 語氣轉柔。指右邊綠色的兩筆（會員家訪）。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>月初我對它說：這個月三家客戶、兩位會員要去看，幫我排路線、抓時間、每個人準備關心重點。</li>
+        <li>它把客戶和會員排在同一張表上。對我來說，這兩件事本來就是同一件事：<strong>守護。</strong></li>
+        <li>東勢陳伯伯、新社林太太，這些行程以前最容易被擠掉。現在它幫我守住。</li>
+      </ul>
+    </div>
+    <div data-note-for="11">
+      <p><strong>〔時間〕</strong> 10:30–11:15</p>
+      <p><strong>〔舞台指示〕</strong> 放慢、莊重。雙手自然合十或放胸前。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>六月我說：科技賦予能力，信心賦予智慧。今天想補一句：<strong>省下來的時間，才是真正的收穫。</strong></li>
+        <li>一半還給自己：睡眠、體力、和家人吃一頓不看手機的晚餐。一半還給他人：家訪、陪伴、守護需要鼓勵的會員。</li>
+        <li>〈面對疾病〉教我們以生命為本。<strong>老闆先養好生命，才守得住別人。</strong></li>
+      </ul>
+    </div>
+    <div data-note-for="12">
+      <p><strong>〔時間〕</strong> 11:15–11:45</p>
+      <p><strong>〔舞台指示〕</strong> 向台下發出邀請，語氣輕鬆。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>行動邀請比上次更簡單：<strong>今晚睡前，對手機說出明天的行程和三件待辦</strong>，請它整理好唸回來。</li>
+        <li>免費版就夠，不用設定、不用打字。</li>
+        <li>然後，把手機放下，早點睡。<strong>這就是保養。</strong>明天早上你會發現腦袋比平常清楚很多。</li>
+      </ul>
+    </div>
+    <div data-note-for="13">
+      <p><strong>〔時間〕</strong> 11:45–12:00</p>
+      <p><strong>〔舞台指示〕</strong> 站直，語氣昂揚，結尾深深一鞠躬。</p>
+      <p><strong>〔逐字稿重點〕</strong></p>
+      <ul>
+        <li>「喜者，自他共喜也。」</li>
+        <li><strong>養好自己的生命，成為守護他人的力量。</strong></li>
+        <li>一生決不退轉，不斷創造勝利實證。感謝大家！</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="script.js?v=20260912a"></script>
+  <script>
+    // 影片檔存在時隱藏提示文字
+    (function () {
+      var v = document.getElementById('v1'), fb = document.getElementById('v1-fallback');
+      if (!v || !fb) return;
+      v.addEventListener('loadedmetadata', function () { fb.style.display = 'none'; });
+      v.addEventListener('error', function () { fb.style.display = 'flex'; });
+    })();
+  </script>
+</body>
+</html>
