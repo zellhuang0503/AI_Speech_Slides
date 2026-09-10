@@ -1,0 +1,1495 @@
+/* ==========================================================================
+   梵亞行銷 AI 專題簡報系統樣式表 ─ UI/UX Pro Max 極致和風美學重塑
+   ========================================================================== */
+
+/* 1. 主題變數與色彩系統 (精準調和的日式傳統配色) */
+:root, .light-theme {
+  /* 預設：日式宣紙與木藝暖白 */
+  --bg-primary: #FAF7F0;      /* 溫潤和紙暖白 */
+  --bg-secondary: #FFFDF8;    /* 薄雲白卡片 */
+  --text-primary: #1C1D1F;    /* 消炭墨黑 - 超高對比投影 */
+  --text-secondary: #5C6068;  /* 鉛灰色 */
+  --accent-green: #2E5A36;    /* 苔綠/千歲綠 (Chitose-midori) */
+  --accent-gold: #B87D3B;     /* 山吹金/金箔金 (Yamabuki-gold) */
+  --accent-red: #A33535;      /* 緋紅/朱砂紅 (Shusha-red) */
+  --bronze-gold: #BBA57C;     /* 日本古銅金 - 用於裝飾細線 */
+  --glass-bg: rgba(255, 253, 248, 0.88);
+  --glass-border: rgba(187, 165, 124, 0.25);
+  --card-shadow: 0 10px 30px rgba(42, 43, 45, 0.03);
+  --card-border: rgba(187, 165, 124, 0.2);
+  --font-title: 'Noto Serif TC', 'Outfit', serif;
+  --font-body: 'Noto Sans TC', 'Segoe UI', sans-serif;
+}
+
+.dark-theme {
+  /* 備用：暗色極簡黑 */
+  --bg-primary: #0A0B0D;
+  --bg-secondary: #13151A;
+  --text-primary: #F0F2F5;
+  --text-secondary: #8C929E;
+  --accent-green: #00E676;
+  --accent-gold: #FFD600;
+  --accent-red: #FF3D00;
+  --bronze-gold: #8C7550;
+  --glass-bg: rgba(19, 21, 26, 0.9);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  --card-border: rgba(255, 255, 255, 0.05);
+}
+
+/* 2. 基礎重設與全局樣式 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 多層次宣紙漸變背景 (陽光和室感) */
+body.light-theme {
+  background: 
+    radial-gradient(circle at 10% 15%, rgba(246, 239, 224, 0.7) 0%, rgba(246, 239, 224, 0) 50%),
+    radial-gradient(circle at 85% 85%, rgba(234, 222, 198, 0.6) 0%, rgba(234, 222, 198, 0) 50%),
+    radial-gradient(circle at 50% 50%, #FAF7F0 0%, #F5F1E4 100%);
+}
+
+/* 和紙顆粒紋理層 (SVG fractalNoise 噪紋輸出) */
+.washi-texture-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999; /* 鋪設在最上層，賦予整個簡報真和紙的纖維微顆粒感 */
+  opacity: 0.16;
+  filter: url(#washi-noise);
+  background: transparent;
+}
+
+/* 中文分組防斷行核心樣式 */
+span {
+  display: inline;
+  word-break: break-all;
+  white-space: normal;
+  vertical-align: top;
+}
+
+/* 3. 日式生機粒子背景 */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.particle {
+  position: absolute;
+  bottom: -20px;
+  border-radius: 50%;
+  opacity: 0;
+  animation: float-up 12s linear infinite;
+}
+
+.particle[class*="leaf-"] {
+  background: var(--accent-green);
+  opacity: 0.05;
+  border-radius: 0 100%;
+  width: 16px;
+  height: 16px;
+}
+
+.particle[class*="gold-"] {
+  background: var(--accent-gold);
+  opacity: 0.12;
+  filter: blur(0.5px);
+  width: 8px;
+  height: 8px;
+}
+
+.leaf-1 { left: 10%; width: 14px; height: 14px; animation-duration: 14s; animation-delay: 0s; }
+.gold-1 { left: 25%; width: 6px; height: 6px; animation-duration: 10s; animation-delay: 2s; }
+.leaf-2 { left: 40%; width: 18px; height: 18px; animation-duration: 16s; animation-delay: 4s; }
+.gold-2 { left: 55%; width: 8px; height: 8px; animation-duration: 12s; animation-delay: 1s; }
+.leaf-3 { left: 70%; width: 12px; height: 12px; animation-duration: 13s; animation-delay: 6s; }
+.gold-3 { left: 85%; width: 5px; height: 5px; animation-duration: 9s; animation-delay: 3s; }
+.leaf-4 { left: 30%; width: 15px; height: 15px; animation-duration: 15s; animation-delay: 8s; }
+.gold-4 { left: 65%; width: 7px; height: 7px; animation-duration: 11s; animation-delay: 5s; }
+.leaf-5 { left: 90%; width: 16px; height: 16px; animation-duration: 17s; animation-delay: 2s; }
+.gold-5 { left: 5%; width: 9px; height: 9px; animation-duration: 13s; animation-delay: 7s; }
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.35;
+  }
+  85% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(-108vh) translateX(60px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 4. 禪意圓融日輪 (重塑漸變，呈現晨曦金箔感) */
+.japan-sun {
+  position: absolute;
+  top: -15%;
+  left: -15%;
+  width: calc(55 * var(--vw));
+  height: calc(55 * var(--vw));
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 125, 59, 0.07) 0%, rgba(184, 125, 59, 0) 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.japan-sun.mini {
+  top: auto;
+  left: auto;
+  bottom: -10%;
+  right: -10%;
+  width: calc(35 * var(--vw));
+  height: calc(35 * var(--vw));
+  background: radial-gradient(circle, rgba(46, 90, 54, 0.05) 0%, rgba(46, 90, 54, 0) 70%);
+}
+
+/* 5. 簡報主容器 */
+#slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  overflow: hidden;
+}
+
+/* 4:3 簡報舞台容器 */
+.slides-stage {
+  position: relative;
+  width: 1200px;
+  height: 900px;
+  --vw: 12px; /* 1200px / 100 */
+  --vh: 9px;  /* 900px / 100 */
+  transform-origin: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 投影片基礎結構 */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 48px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transform: scale(0.99);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+/* 投影片內容容器 */
+.slide-content {
+  width: 100%;
+  max-width: 95%;
+  height: 94%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* 「Header-Body」上下分層佈局 */
+.page-layout-header-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+}
+
+.slide-header {
+  width: 100%;
+  margin-bottom: calc(2.5 * var(--vh));
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide-body {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   6. Staggered 差時動畫 - 優化為 Spring 物理緩和曲線
+   ========================================================================== */
+
+/* 預設：下移並透明 */
+.slide .subtitle-badge,
+.slide .badge,
+.slide h1,
+.slide h2,
+.slide .slide-hint,
+.slide p,
+.slide .lead-text,
+.slide blockquote,
+.slide .quote-symbol,
+.slide cite,
+.slide .guideline-card,
+.slide .warning-callout,
+.slide .image-wrapper,
+.slide .showcase-card,
+.slide .conclusion-box,
+.slide .action-card,
+.slide .synergy-col,
+.slide .final-oath,
+.slide .final-blessing,
+.slide .author-info p,
+.slide .location-info,
+.slide .slide-header,
+.slide .slide-body {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 當投影片 active 時按順序浮現 */
+.slide.active .slide-header,
+.slide.active .subtitle-badge,
+.slide.active .badge,
+.slide.active .number-tag {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.08s;
+}
+
+.slide.active h1,
+.slide.active h2,
+.slide.active .quote-symbol {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.18s;
+}
+
+.slide.active .slide-body {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.25s;
+}
+
+.slide.active p.lead-text,
+.slide.active blockquote {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.32s;
+}
+
+.slide.active p,
+.slide.active cite,
+.slide.active .car-comparison,
+.slide.active .danger-title,
+.slide.active .author-info p,
+.slide.active .location-info {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.42s;
+}
+
+/* 列表與卡片 Stagger */
+.slide.active .guideline-card:nth-child(1) { transition-delay: 0.42s; }
+.slide.active .guideline-card:nth-child(2) { transition-delay: 0.52s; }
+.slide.active .guideline-card:nth-child(3) { transition-delay: 0.62s; }
+
+.slide.active .danger-list li:nth-child(1) { transition-delay: 0.48s; }
+.slide.active .danger-list li:nth-child(2) { transition-delay: 0.58s; }
+.slide.active .danger-list li:nth-child(3) { transition-delay: 0.68s; }
+
+.slide.active .warning-callout,
+.slide.active .image-wrapper,
+.slide.active .showcase-card,
+.slide.active .action-card,
+.slide.active .synergy-col:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.52s;
+}
+
+.slide.active .synergy-col:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.64s;
+}
+
+.slide.active .conclusion-box,
+.slide.active .final-oath {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.62s;
+}
+
+.slide.active .final-blessing {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.78s;
+}
+
+/* ==========================================================================
+   7. UI/UX Pro Max 藝術字體與排版 (思源宋體與 Outfit 的交融)
+   ========================================================================== */
+h1.main-title {
+  font-family: var(--font-title);
+  font-size: clamp(3.8rem, calc(8.5 * var(--vw)), 7.2rem);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+  /* 漸變金箔效果 */
+  background: linear-gradient(135deg, var(--accent-gold), #8C5516);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 12px rgba(184, 125, 59, 0.08);
+}
+
+h2 {
+  font-family: var(--font-title);
+  font-size: clamp(2.2rem, calc(5.2 * var(--vw)), 4.2rem);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.8rem;
+  /* 抹茶墨綠漸變 */
+  background: linear-gradient(135deg, var(--accent-green), #19351F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  word-break: keep-all;
+}
+
+h3 {
+  font-family: var(--font-title);
+  font-size: clamp(2.1rem, calc(3.5 * var(--vw)), 2.9rem);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+p {
+  font-size: clamp(1.75rem, calc(3.2 * var(--vw)), 2.5rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+p.lead-text {
+  font-size: clamp(1.8rem, calc(3.8 * var(--vw)), 3rem);
+  line-height: 1.55;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-family: var(--font-title); /* 前導語也使用雅緻宋體 */
+}
+
+/* 雙色高亮 (純淨書法墨意) */
+.highlight-green {
+  font-family: var(--font-title);
+  font-weight: 900;
+  background: linear-gradient(120deg, var(--accent-green), #4CAF50);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.highlight-gold {
+  font-family: var(--font-title);
+  font-weight: 900;
+  background: linear-gradient(120deg, var(--accent-gold), #FFB300);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 日式極簡工藝 Badge */
+.badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 6px 20px;
+  background-color: var(--bg-secondary);
+  border: 1.5px solid var(--bronze-gold); /* 銅金線 */
+  color: var(--accent-green);
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 4px;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(46, 90, 54, 0.03);
+}
+
+.subtitle-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 8px 24px;
+  background-color: var(--bg-secondary);
+  border: 1.5px solid var(--bronze-gold);
+  color: var(--text-secondary);
+  font-size: clamp(1.2rem, calc(2.2 * var(--vw)), 1.6rem);
+  font-weight: 600;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+}
+
+/* A. Center Layout (封面) */
+.center-layout {
+  align-items: center;
+  text-align: center;
+}
+
+.center-layout .subtitle-badge {
+  align-self: center;
+}
+
+.author-info {
+  margin-top: 3.5rem;
+}
+
+.author-name {
+  font-size: clamp(1.7rem, calc(3.2 * var(--vw)), 2.5rem);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.author-title {
+  font-size: clamp(1.25rem, calc(2.2 * var(--vw)), 1.6rem);
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+
+.location-info {
+  font-size: clamp(1.15rem, calc(2 * var(--vw)), 1.45rem);
+  color: var(--text-secondary);
+  margin-top: 20px;
+  opacity: 0.9;
+}
+
+/* B. Quote Layout (引言金句 - 經典排版) */
+.quote-layout {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 4%;
+}
+
+.quote-symbol {
+  font-family: 'Outfit', sans-serif;
+  font-size: 9rem;
+  line-height: 1;
+  height: 4.5rem;
+  color: var(--accent-green);
+  opacity: 0.12;
+  margin-bottom: -1.5rem;
+}
+
+.large-quote {
+  font-family: var(--font-title);
+  font-size: clamp(3rem, calc(6.2 * var(--vw)), 5.2rem);
+  font-weight: 900;
+  line-height: 1.5;
+  color: var(--text-primary);
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.01em;
+}
+
+.medium-quote {
+  font-family: var(--font-title);
+  font-size: clamp(2.4rem, calc(5 * var(--vw)), 3.8rem);
+  font-weight: 900;
+  line-height: 1.5;
+  color: var(--text-primary);
+  margin-bottom: 2.2rem;
+}
+
+.quote-author {
+  font-family: var(--font-title);
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  color: var(--accent-gold);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.quote-lead {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--text-secondary);
+  max-width: 900px;
+}
+
+/* C. Split Layout (雙欄內容) */
+.split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4%;
+  align-items: center;
+  width: 100%;
+}
+
+.split-layout.reverse {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.split-layout.image-right {
+  grid-template-columns: 1.05fr 0.95fr;
+}
+
+.split-layout.image-left {
+  grid-template-columns: 0.95fr 1.05fr;
+}
+
+.left-col, .right-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+/* 頁面頂部隱約章節線條提示 (UI/UX Pro Max 頁碼細節) */
+.slide-hint {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--bronze-gold);
+  opacity: 0.35; /* 若隱若現 */
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  align-self: flex-start;
+  user-select: none;
+}
+
+.slide-hint::after {
+  content: "";
+  display: inline-block;
+  width: 60px; /* 銅金色指示短線 */
+  height: 1.5px;
+  background-color: var(--bronze-gold);
+  opacity: 0.4;
+}
+
+/* 差時動畫 active 狀態 (頁碼最先浮現) */
+.slide.active .slide-hint {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.05s;
+}
+
+/* 新增：Slide 3 橫向三欄佈局與滿寬大字 */
+.vertical-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.lead-text.full-width {
+  width: 100%;
+  text-align: left;
+  margin-bottom: calc(4 * var(--vh));
+  max-width: 1100px;
+}
+
+.grid-three-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+/* 橫向三卡片 Stagger delay */
+.slide.active .grid-three-cols .guideline-card:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.42s;
+}
+.slide.active .grid-three-cols .guideline-card:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.52s;
+}
+.slide.active .grid-three-cols .guideline-card:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.62s;
+}
+
+/* ==========================================================================
+   8. 和風障子門 (Shoji) 卡片與邊框設計 (UI/UX Pro Max 靈魂)
+   ========================================================================== */
+
+/* 日式屏風卡片 */
+.guideline-card, .warning-callout, .showcase-card, .action-card, .focus-box {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid var(--glass-border); /* 古銅金細邊 */
+  border-radius: 6px;
+  box-shadow: 
+    var(--card-shadow),
+    inset 0 0 20px rgba(187, 165, 124, 0.02); /* 內發光 */
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.guideline-card {
+  padding: 24px 28px;
+}
+
+.guideline-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(184, 125, 59, 0.4); /* 觸摸變暖金色 */
+  box-shadow: 0 15px 35px rgba(184, 125, 59, 0.06);
+}
+
+/* 抹茶若葉高亮卡片 */
+.guideline-card.highlight-border {
+  border: 2px dashed rgba(46, 90, 54, 0.35); /* 苔綠虛線包邊 */
+  background: rgba(255, 254, 248, 0.92);
+}
+
+.guideline-card h3 {
+  color: var(--accent-gold);
+}
+
+.guideline-card p {
+  font-size: clamp(1.3rem, calc(2.2 * var(--vw)), 1.6rem);
+}
+
+/* 置中文字焦點盒 */
+.focus-box {
+  padding: 40px 50px;
+  max-width: 1000px;
+  margin: 1.5rem 0;
+}
+
+.accent-text {
+  font-size: clamp(1.9rem, calc(3.8 * var(--vw)), 2.8rem);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.professor-quote {
+  margin-top: 1.5rem;
+}
+
+.quote-label {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.professor-quote blockquote {
+  font-family: var(--font-title);
+  font-size: clamp(2.2rem, calc(4.5 * var(--vw)), 3.5rem);
+  font-weight: 900;
+  margin-top: 8px;
+}
+
+/* 警示卡片 */
+.warning-callout {
+  background: rgba(163, 53, 53, 0.02); /* 朱砂紅底 */
+  border-left: 6px solid var(--accent-red);
+  padding: 30px 35px;
+  border-radius: 0 6px 6px 0;
+}
+
+.callout-title {
+  color: var(--accent-red);
+  font-weight: 800;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.callout-desc {
+  font-size: clamp(1.8rem, calc(3.8 * var(--vw)), 2.8rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   9. 馬拉汽車代價列表樣式 (修復重疊 Bug，還原超大字體)
+   ========================================================================== */
+
+.car-comparison {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: calc(2 * var(--vh));
+}
+
+.car-comparison span {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: clamp(1.2rem, calc(2.4 * var(--vw)), 1.8rem);
+}
+
+.car-comparison .bad {
+  background: rgba(163, 53, 53, 0.08);
+  color: var(--accent-red);
+}
+
+.car-comparison .good {
+  background: rgba(46, 90, 54, 0.08);
+  color: var(--accent-green);
+}
+
+.car-comparison .arrow {
+  color: var(--text-secondary);
+  font-weight: 800;
+}
+
+.danger-title {
+  color: var(--text-primary);
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: clamp(1.4rem, calc(2.6 * var(--vw)), 2rem);
+  margin-bottom: calc(2 * var(--vh));
+}
+
+.danger-list {
+  list-style: none;
+}
+
+.danger-list li {
+  display: flex;
+  align-items: flex-start;
+  font-size: clamp(1.85rem, calc(3.8 * var(--vw)), 2.85rem); /* 極致大字體，高清晰 */
+  color: var(--text-primary); /* 改為高對比主要文字色 */
+  margin-bottom: calc(2.8 * var(--vh)); /* 大氣行距 */
+  line-height: 1.5;
+}
+
+.danger-list li .num-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; /* 放大圓圈 */
+  height: 44px; /* 放大圓圈 */
+  background: rgba(198, 40, 40, 0.08); /* 暖紅底 */
+  border: 1.5px solid var(--accent-red);
+  color: var(--accent-red);
+  font-weight: 800;
+  font-size: 1.35rem; /* 放大數字 */
+  border-radius: 50%;
+  margin-right: 18px; /* 增大數字與文字的間距 */
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.danger-list li .list-text {
+  flex: 1;
+}
+
+/* ==========================================================================
+   10. 圖片與圖表展示優化
+   ========================================================================== */
+.image-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.image-wrapper {
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--bronze-gold);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 
+    var(--card-shadow),
+    0 15px 40px rgba(42, 43, 45, 0.06);
+  width: 100%;
+}
+
+.image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.image-caption {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+#mail-car-img {
+  max-height: calc(58 * var(--vh));
+  object-fit: contain;
+}
+
+#ai-distribution-img {
+  max-height: calc(65 * var(--vh));
+  object-fit: contain;
+}
+
+.data-chart-wrapper {
+  background: #FFFFFF;
+  border: 1.5px solid var(--glass-border);
+  padding: 8px;
+}
+
+/* ==========================================================================
+   11. 其它頁面特定組件
+   ========================================================================== */
+
+#slide-7 .split-layout,
+#slide-8 .split-layout {
+  align-items: center;
+}
+
+/* Slide 7 & 8: 勝利實證 Card */
+.project-showcase {
+  display: flex;
+  align-items: center;
+  height: auto;
+}
+
+.showcase-card {
+  padding: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 24px;
+}
+
+.client-badge {
+  display: inline-block;
+  background: rgba(184, 125, 59, 0.08);
+  color: var(--accent-gold);
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.showcase-card h4 {
+  font-family: var(--font-title);
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.showcase-card p {
+  font-size: 1.75rem;
+  margin-bottom: 25px;
+}
+
+.highlight-result {
+  background: rgba(46, 90, 54, 0.03);
+  border: 1.5px dashed var(--accent-green);
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+}
+
+.highlight-result span {
+  display: block;
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.highlight-result strong {
+  font-family: var(--font-title);
+  font-size: 2.9rem;
+  color: var(--accent-green);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+/* Slide 8: AI 使用分佈 (徹底重構 Legend 解決重疊 Bug) */
+.data-col {
+  padding-left: 20px;
+}
+
+.data-legend {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(1.5 * var(--vh));
+  width: 100%;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* 大寬鬆間距 */
+  width: 100%;
+}
+
+.legend-item .pct {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, calc(3.8 * var(--vw)), 2.6rem);
+  min-width: 160px; /* 寬裕的最小寬度，保證 0.04% 絕不與右邊文字重疊！ */
+  flex-shrink: 0;
+  text-align: left;
+}
+
+.legend-item p {
+  font-size: clamp(1.3rem, calc(2.2 * var(--vw)), 1.7rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0;
+  flex: 1;
+}
+
+.legend-item.gray .pct { color: #8E95A5; }
+.legend-item.green .pct { color: var(--accent-green); }
+.legend-item.gold .pct { color: var(--accent-gold); }
+.legend-item.red .pct { color: var(--accent-red); }
+
+.conclusion-box {
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--bronze-gold);
+  padding: 20px 30px;
+  border-radius: 6px;
+  box-shadow: var(--card-shadow);
+  display: inline-block;
+}
+
+.conclusion-box p {
+  font-family: var(--font-title);
+  color: var(--accent-green);
+  font-weight: 800;
+  font-size: 1.8rem;
+}
+
+/* Slide 9: 行動邀請 Card */
+.action-card {
+  padding: 35px 40px;
+  max-width: 950px;
+  margin: 1rem 0 1.5rem;
+  text-align: center;
+}
+
+.action-card h3 {
+  font-family: var(--font-title);
+  color: var(--accent-green);
+  font-size: 2.3rem;
+  margin-bottom: 12px;
+}
+
+.action-desc {
+  font-size: 1.85rem;
+  color: var(--text-primary);
+  margin-bottom: 25px;
+}
+
+.fee-comparison {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.fee-item {
+  flex: 1;
+  max-width: 380px;
+}
+
+.fee-item strong {
+  font-family: var(--font-title);
+  display: block;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.fee-item.vip strong {
+  color: var(--accent-gold);
+}
+
+.fee-item span {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.fee-divider {
+  width: 1px;
+  height: 60px;
+  background-color: var(--glass-border);
+}
+
+.action-footer {
+  font-size: 1.45rem;
+  color: var(--text-secondary);
+  font-style: normal;
+  border-top: 1px dashed var(--glass-border);
+  padding-top: 15px;
+  display: inline-block;
+}
+
+/* Slide 10: 科技與信心 */
+.synergy-box {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 2.5rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.synergy-col {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+}
+
+.synergy-col.border-left {
+  border-left: 1.5px solid var(--glass-border);
+}
+
+.synergy-col strong {
+  font-family: var(--font-title);
+  display: block;
+  font-size: 2.2rem;
+  color: var(--accent-gold);
+  margin-bottom: 12px;
+}
+
+.synergy-col p {
+  font-size: 1.55rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+/* Slide 11: 信心結尾 */
+.finish-slide {
+  text-align: center;
+}
+
+.final-oath {
+  font-family: var(--font-title);
+  font-size: clamp(2.6rem, calc(5.5 * var(--vw)), 4.4rem);
+  font-weight: 900;
+  line-height: 1.45;
+  color: var(--accent-green);
+  margin: 2.5rem 0;
+  /* 禪意水墨綠漸變 */
+  background: linear-gradient(135deg, var(--accent-green), #102515);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.final-blessing {
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* font-adjust */
+.font-adjust .medium-quote {
+  font-size: clamp(2.2rem, calc(5 * var(--vw)), 3.8rem);
+}
+
+/* 12. 進度條 */
+#progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-green), var(--accent-gold));
+  z-index: 100;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 13. 浮動控制面板 */
+#control-panel {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  padding: 8px 18px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 90;
+  box-shadow: var(--card-shadow);
+  opacity: 0.15;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#control-panel:hover {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+#control-panel.panel-active {
+  opacity: 1;
+}
+
+.control-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+  opacity: 1;
+  background: rgba(42, 43, 45, 0.06);
+  color: var(--accent-green);
+}
+
+.dark-theme .control-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.control-btn:active {
+  transform: scale(0.92);
+}
+
+#slide-number {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  min-width: 60px;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.panel-divider {
+  width: 1px;
+  height: 20px;
+  background-color: var(--glass-border);
+  margin: 0 4px;
+}
+
+.theme-icon, .notes-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* 14. 點擊熱區 */
+.click-zone {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 8%;
+  z-index: 50;
+  cursor: pointer;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  font-size: 3.5rem;
+  font-family: 'Outfit', sans-serif;
+  transition: opacity 0.3s ease;
+  user-select: none;
+}
+
+#zone-prev {
+  left: 0;
+}
+#zone-prev::before {
+  content: "‹";
+}
+
+#zone-next {
+  right: 0;
+}
+#zone-next::before {
+  content: "›";
+}
+
+.click-zone:hover {
+  opacity: 0.15;
+  background: linear-gradient(to right, rgba(0,0,0,0.02), transparent);
+}
+#zone-next:hover {
+  background: linear-gradient(to left, rgba(0,0,0,0.02), transparent);
+}
+
+.dark-theme .click-zone:hover {
+  opacity: 0.25;
+  background: linear-gradient(to right, rgba(255,255,255,0.03), transparent);
+}
+.dark-theme #zone-next:hover {
+  background: linear-gradient(to left, rgba(255,255,255,0.03), transparent);
+}
+
+/* 15. 演講者小抄面板 */
+#notes-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 400px;
+  height: 100vh;
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-left: 1px solid var(--glass-border);
+  z-index: 120;
+  box-shadow: -10px 0 40px rgba(42, 43, 45, 0.08);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#notes-panel.active {
+  transform: translateX(0);
+}
+
+.notes-header {
+  padding: 24px;
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notes-header h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin-bottom: 0;
+}
+
+#btn-notes-close {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+#btn-notes-close:hover {
+  opacity: 1;
+  color: var(--accent-red);
+}
+
+.notes-content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  font-size: 1.15rem;
+  line-height: 1.65;
+}
+
+.notes-content-area p {
+  color: var(--text-primary);
+  margin-bottom: 1.2rem;
+  font-size: 1.15rem;
+}
+
+.notes-content-area ul {
+  padding-left: 20px;
+  margin-bottom: 1.5rem;
+}
+
+.notes-content-area li {
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+}
+
+.notes-content-area strong {
+  color: var(--accent-green);
+}
+
+/* 15. 4:3 比例與排版細節微調 (優化防切版與字體大小) */
+/* Slide 1 封面標題：放寬容器 + 鎖定單行，讓「自他共喜」與「人間革命」同一行不亂斷 */
+#slide-1 .slide-content {
+  max-width: 100%;
+}
+#slide-1 .main-title {
+  font-size: clamp(3rem, calc(6.8 * var(--vw)), 5.6rem);
+  white-space: nowrap;
+}
+
+/* Slide 4 簡教授金句：縮小字級並鎖定單行，避免斷行 */
+#slide-4 .professor-quote blockquote {
+  font-size: clamp(2rem, calc(4 * var(--vw)), 3.1rem);
+  white-space: nowrap;
+}
+
+/* Slide 5 生命的變革 左右對等微調 */
+#slide-5 .split-layout {
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 3%;
+}
+#slide-5 .warning-callout {
+  padding: 24px 28px;
+}
+#slide-5 .callout-desc {
+  font-size: clamp(1.6rem, calc(3.2 * var(--vw)), 2.3rem);
+}
+
+/* Slide 7 變革的代價 字體與間距微調 */
+#slide-7 .danger-list li {
+  font-size: clamp(1.6rem, calc(3.2 * var(--vw)), 2.2rem) !important;
+  margin-bottom: calc(2.4 * var(--vh)) !important;
+}
+
+/* Slide 8 & 9 專案實績卡片在 4:3 比例下防溢出優化 */
+#slide-8 .showcase-card,
+#slide-9 .showcase-card {
+  padding: 22px 26px !important;
+}
+#slide-8 h4,
+#slide-9 h4 {
+  font-size: 2.0rem !important;
+}
+#slide-8 .danger-list li,
+#slide-9 .danger-list li {
+  font-size: 1.4rem !important;
+  margin-bottom: 8px !important;
+}
+#slide-8 .danger-list li .num-badge,
+#slide-9 .danger-list li .num-badge {
+  width: 30px !important;
+  height: 30px !important;
+  font-size: 1.0rem !important;
+}
+#slide-9 .highlight-result strong {
+  font-size: 1.95rem !important;
+}
+
+/* 16. 列印樣式 */
+@media print {
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    overflow: visible !important;
+  }
+  
+  #slider-container {
+    display: block !important;
+    height: auto !important;
+  }
+  
+  .slide {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100vh !important;
+    page-break-after: always !important;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    padding: 5% !important;
+  }
+  
+  .slide-content {
+    height: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* 強制在列印時顯示所有投影片內容，避免因 transition / active class 造成的透明空白問題 */
+  .slide .subtitle-badge,
+  .slide .badge,
+  .slide h1,
+  .slide h2,
+  .slide .slide-hint,
+  .slide p,
+  .slide .lead-text,
+  .slide blockquote,
+  .slide .quote-symbol,
+  .slide cite,
+  .slide .guideline-card,
+  .slide .warning-callout,
+  .slide .image-wrapper,
+  .slide .showcase-card,
+  .slide .conclusion-box,
+  .slide .action-card,
+  .slide .synergy-col,
+  .slide .final-oath,
+  .slide .final-blessing,
+  .slide .author-info p,
+  .slide .location-info,
+  .slide .slide-header,
+  .slide .slide-body {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  #control-panel, #progress-bar, .click-zone, #notes-panel {
+    display: none !important;
+  }
+}

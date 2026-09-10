@@ -1,0 +1,5 @@
+# Preserve portable delivery files byte-for-byte, including EML/ICS line endings.
+/2026-09-12-三段現場版/** -text
+/20260912_三段現場版.zip -text
+/README.md text eol=lf
+/.gitattributes text eol=lf

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 時代的人間革命｜生命大保養 ─ 三段現場版 ─ 黃志宏專題分享 2026.09.12</title>
+  <link rel="stylesheet" href="style.css?v=20260912a">
+  <style>
+    /* 本場專用補充樣式 */
+    .command-card { padding: 34px 44px; max-width: 1000px; margin: 1.2rem 0; text-align: center; }
+    .command-label { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent-gold); margin-bottom: 14px; }
+    .command-text { font-family: var(--font-title); font-weight: 900; font-size: clamp(1.9rem, calc(3.6 * var(--vw)), 2.5rem); line-height: 1.5; color: var(--text-primary); }
+    .icon-row { display: flex; justify-content: center; gap: 36px; margin-top: 1.4rem; flex-wrap: wrap; }
+    .icon-chip { display: flex; align-items: center; gap: 10px; padding: 10px 22px; border-radius: 999px; border: 1.5px solid var(--card-border); background: var(--glass-bg); font-size: 1.35rem; font-weight: 700; color: var(--text-secondary); }
+    .icon-chip .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent-green); }
+    .icon-chip.gold .dot { background: var(--accent-gold); }
+    .icon-chip.red .dot { background: var(--accent-red); }
+    .flow-row { display: flex; align-items: center; justify-content: center; gap: 18px; width: 100%; flex-wrap: nowrap; }
+    .flow-node { padding: 22px 26px; border-radius: 8px; border: 1.5px solid var(--card-border); background: var(--glass-bg); box-shadow: var(--card-shadow); text-align: center; min-width: 150px; }
+    .flow-node .t { display: block; font-weight: 900; font-size: 1.5rem; font-family: var(--font-title); color: var(--text-primary); }
+    .flow-node .d { display: block; font-size: 1.05rem; color: var(--text-secondary); margin-top: 6px; line-height: 1.4; }
+    .flow-node.boss { border-color: var(--accent-gold); }
+    .flow-node.result { border-color: var(--accent-green); }
+    .flow-arrow { font-size: 2.2rem; color: var(--bronze-gold); font-weight: 300; }
+    .flow-agents { display: flex; flex-direction: column; gap: 12px; }
+    .flow-agents .flow-node { padding: 12px 22px; min-width: 190px; }
+
+
+    .visit-list { list-style: none; padding: 0; margin: 0; width: 100%; display: flex; flex-direction: column; gap: 12px; }
+    .visit-list li { display: flex; align-items: center; gap: 16px; padding: 12px 18px; border-radius: 6px; border: 1.5px solid var(--card-border); background: var(--glass-bg); font-size: 1.3rem; }
+    .visit-list .day { font-family: 'Outfit', sans-serif; font-weight: 800; color: var(--accent-gold); min-width: 92px; }
+    .visit-list .who { font-weight: 700; color: var(--text-primary); min-width: 200px; }
+    .visit-list .why { color: var(--text-secondary); font-size: 1.1rem; }
+    .visit-list li.member { border-left: 5px solid var(--accent-green); }
+    .three-answer .guideline-card h3 { font-size: 1.6rem; }
+    .three-answer .guideline-card p { font-size: 1.25rem; line-height: 1.55; }
+    .three-answer .guideline-card .tag { display: inline-block; font-size: 1rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; margin-bottom: 10px; color: #fff; background: var(--accent-green); }
+    .three-answer .guideline-card .tag.warn { background: var(--accent-red); }
+    .three-answer .guideline-card .tag.gold { background: var(--accent-gold); }
+  
+    .live-body { justify-content:center; gap:26px; }
+    .live-demo .live-body { gap:18px; }
+    .live-prepared { width:100%; border-left:4px solid var(--accent-gold); padding-left:20px; box-sizing:border-box; }
+    .live-prepared strong { font-size:1.35rem; color:var(--accent-gold); }
+    .live-prepared p { font-size:1.5rem; line-height:1.55; margin:6px 0 0; color:var(--text-secondary); }
+    .tool-brief { width:100%; }
+    .tool-brief h3 { font-size:2.45rem; color:var(--accent-green); margin:0 0 18px; }
+    .tool-brief p { font-size:1.8rem; line-height:1.65; margin:12px 0; color:var(--text-secondary); }
+    .tool-brief .tool-main { font-size:2rem; margin-bottom:28px; color:var(--text-primary); }
+    .tool-demo-order { font-size:1.8rem; line-height:1.6; width:100%; color:var(--accent-green); }
+    .live-body .badge { align-self:flex-start; margin:0; }
+    .live-context { font-size:1.9rem; line-height:1.65; width:100%; margin:0; color:var(--text-secondary); }
+    .live-question { width:100%; box-sizing:border-box; padding:20px 28px; text-align:center; }
+    .live-question p { font-family:var(--font-title); font-size:2.3rem; font-weight:900; line-height:1.5; margin:0; color:var(--text-primary); }
+    .live-demo .slide-header h2 { font-size:3.6rem; }
+    .live-demo .icon-row { margin-top:0; gap:20px; }
+    .live-demo .icon-chip { font-size:1.55rem; }
+    .live-flow .flow-node { flex:1; padding:34px 14px; min-width:0; }
+    .live-flow .t { font-size:2rem; }
+    .live-flow .d { font-size:1.5rem; line-height:1.5; }
+    .live-takeaway { font-size:2rem; text-align:center; line-height:1.6; width:100%; color:var(--accent-green); }
+    .transition-list { width:100%; }
+    .transition-list p { font-size:2.35rem; line-height:1.6; margin:24px 0; }
+    .transition-list b { color:var(--accent-gold); margin-right:28px; font-family:Outfit,sans-serif; }
+    #slide-9 .slide-header h2, #slide-10 .slide-header h2 { font-size:3.4rem; }
+    #slide-9 .three-answer .guideline-card p { font-size:1.5rem; }
+    #slide-9 .conclusion-box p { font-size:1.8rem; }
+  </style>
+  <link rel="stylesheet" href="資源/字型/fonts.css">
+</head>
+<body class="light-theme">
+
+  <svg style="display: none;">
+    <filter id="washi-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.035 0" />
+    </filter>
+  </svg>
+  <div class="washi-texture-layer"></div>
+  <div class="particles-container">
+    <div class="particle leaf-1"></div><div class="particle gold-1"></div>
+    <div class="particle leaf-2"></div><div class="particle gold-2"></div>
+    <div class="particle leaf-3"></div><div class="particle gold-3"></div>
+    <div class="particle leaf-4"></div><div class="particle gold-4"></div>
+    <div class="particle leaf-5"></div><div class="particle gold-5"></div>
+  </div>
+
+  <main id="slider-container">
+    <div class="slides-stage">
+
+    <!-- Slide 1: 封面 -->
+    <section class="slide active" id="slide-1" data-note-index="1">
+      <div class="japan-sun"></div>
+      <div class="slide-content center-layout">
+        <div class="subtitle-badge"><span>2026 台中社會部學習會 ─ 信心掌舵・勝利出發</span></div>
+        <h1 class="main-title">
+          <span>AI 時代的人間革命</span><br>
+          <span class="highlight-green" style="font-size:0.72em;">「生命大保養」</span>
+        </h1>
+        <p class="lead-text" style="text-align:center; font-size:1.9rem; margin-top:0.4rem;"><span>老闆先養好自己，才能守護他人</span></p>
+        <div class="author-info">
+          <p class="author-name"><span>分享者：黃志宏</span></p>
+          <p class="author-title"><span>梵亞行銷有限公司 總經理</span></p>
+          <p class="author-title"><span>學會使命：台中北區豐原本部 本部長</span></p>
+          <p class="location-info"><span>2026.09.12 ─ 金弘笙講堂</span></p>
+        </div>
+      </div>
+    </section>
+
+<section class="slide" id="slide-2" data-note-index="2">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>02 ─ 回顧</span></div>
+          <div class="badge"><span>六月的分享</span></div>
+          <h2><span>從「老闆的革命」到「老闆的保養」</span></h2>
+        </div>
+        <div class="slide-body split-layout">
+          <div class="left-col">
+            <div class="professor-quote" style="margin-top:0; font-size:0.8em;">
+              <span class="quote-label"><span>上次我們談的是：</span></span>
+              <blockquote style="font-size:2.1rem; line-height:1.5;"><span>「這一場 AI 的革命，</span><br><span>是</span><span class="highlight-gold">老闆自己的革命</span><span>。」</span></blockquote>
+            </div>
+            <p class="lead-text" style="margin-top:1.5rem; font-size:1.5rem; color:var(--text-secondary);"><span>回家做一件事：和 AI 討論一個煩惱已久的決策。</span></p>
+          </div>
+          <div class="right-col vertical-flow">
+            <div class="warning-callout" style="border-left:6px solid var(--accent-green); background: rgba(46, 90, 54, 0.03);">
+              <p class="callout-title" style="color:var(--accent-green);"><span>今天更進一步</span></p>
+              <p class="callout-desc" style="font-family:var(--font-title); font-weight:900; font-size:2.4rem; line-height:1.5;"><span>老闆自己先「大保養」，</span><br><span>公司才有本錢守護別人。</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section class="slide" id="slide-3" data-note-index="3">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>03 ─ 觀念</span></div>
+          <h2><span>老闆最常透支的三樣東西</span></h2>
+        </div>
+        <div class="slide-body vertical-layout">
+          <p class="lead-text full-width" style="font-size:1.7rem;"><span>不是錢，也不是能力，而是每天默默被工作吃掉的：</span></p>
+          <div class="grid-three-cols">
+            <div class="guideline-card">
+              <h3><span>睡眠</span></h3>
+              <p><span>晚上十一點還在回客戶的信、看報表。</span></p>
+            </div>
+            <div class="guideline-card">
+              <h3><span>體力</span></h3>
+              <p><span>一天開四場會，回到家只剩下累。</span></p>
+            </div>
+            <div class="guideline-card highlight-border">
+              <h3><span>陪伴</span></h3>
+              <p><span>家人、會員、該去的家訪，總是「下週再說」。</span></p>
+            </div>
+          </div>
+          <p class="lead-text full-width" style="margin-top:1.8rem; color:var(--accent-red); font-family:var(--font-title); font-weight:700;"><span>燈泡壞了，老闆不必每次自己爬梯子。</span></p>
+        </div>
+      </div>
+    </section>
+
+<section class="slide " id="slide-4" data-note-index="4">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header"><div class="slide-hint"><span>04 ─ 把工作交代清楚</span></div><h2><span>用嘴巴，讓 AI 幫你整理工作</span></h2></div>
+        <div class="slide-body vertical-layout live-body">
+  <div class="flow-row live-flow">
+    <div class="flow-node boss"><span class="t">說清楚需求</span><span class="d">今天要決定什麼？</span></div><span class="flow-arrow">→</span>
+    <div class="flow-node"><span class="t">Eva 整理資料</span><span class="d">行程、信件、文件</span></div><span class="flow-arrow">→</span>
+    <div class="flow-node result"><span class="t">老闆做決定</span><span class="d">確認條件，再交辦</span></div>
+  </div><p class="live-takeaway">把整理交給 AI，把判斷留給自己。</p></div>
+      </div>
+    </section>
+
+<section class="slide transition-slide" id="slide-5" data-note-index="5">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header"><div class="slide-hint"><span>05 ─ 示範前，先認識工具</span></div><h2><span>一台 PC，和 Eva 做三件事</span></h2></div>
+        <div class="slide-body vertical-layout live-body">
+  <div class="tool-brief">
+    <h3>ChatGPT 帳號 ＋ Codex App 桌面版</h3>
+    <p class="tool-main">這次在 <strong>Codex 桌面版</strong>操作。<br><strong>即時語音互動：</strong>邊說、邊查資料、在畫面呈現結果。</p>
+    <p><strong>設備：</strong>PC 電腦、網路、麥克風與聲音播放</p>
+    <p><strong>上場前：</strong>登入可用帳號，備妥資料與查詢權限</p>
+    <p><strong>查資料：</strong>Google Calendar 日曆、Gmail 案例信件</p>
+    <p><strong>讀文件：</strong>會議文字紀錄與三份 Excel 表</p>
+  </div>
+  <p class="tool-demo-order">接著看：行程與信件、會後交辦、急單判斷</p></div>
+      </div>
+    </section>
+
+<section class="slide live-demo" id="slide-6" data-note-index="6">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header"><div class="slide-hint"><span>06 ─ 情境 1</span></div><h2><span>行程排好了，準備好了嗎？</span></h2></div>
+        <div class="slide-body vertical-layout live-body"><div class="badge"><span>現場示範 1 · 虛構案例</span></div>
+      <p class="live-context">老闆今天有幾個行程，準備資訊卻散在日曆和信件裡。<br>先弄清楚要準備什麼，再決定哪件事先做。</p>
+      <div class="live-prepared"><strong>事先準備／示範資料</strong><p>9/12 Google 日曆與 Gmail 模擬信件<br>已先備好資料；現場查 3 個行程、讀急單與外包 2 封相關信。</p></div>
+      <div class="focus-box live-question"><p>「Eva，今天要準備什麼？<br>如果只能先做一件事，妳建議哪件？」</p></div>
+      <div class="icon-row"><div class="icon-chip"><span class="dot"></span><span>日曆行程</span></div><div class="icon-chip"><span class="dot"></span><span>相關信件</span></div><div class="icon-chip"><span class="dot"></span><span>提前準備</span></div></div></div>
+      </div>
+    </section>
+
+<section class="slide live-demo" id="slide-7" data-note-index="7">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header"><div class="slide-hint"><span>07 ─ 情境 2</span></div><h2><span>會開完了，誰來把事情做完？</span></h2></div>
+        <div class="slide-body vertical-layout live-body"><div class="badge"><span>現場示範 2 · 虛構案例</span></div>
+      <p class="live-context">開完會，不代表事情就會往前走。<br>交辦要說清楚負責人、期限與完成標準，才能追蹤。</p>
+      <div class="live-prepared"><strong>事先準備／示範資料</strong><p>會議逐字稿.txt：預先準備的 9/9 主管會議文字紀錄<br>依文字整理決議、待辦與 3 份 LINE 追蹤草稿。</p></div>
+      <div class="focus-box live-question"><p>「Eva，把這份會議內容，<br>整理成可以追蹤的工作。」</p></div>
+      <div class="icon-row"><div class="icon-chip"><span class="dot"></span><span>負責人</span></div><div class="icon-chip"><span class="dot"></span><span>期限</span></div><div class="icon-chip"><span class="dot"></span><span>完成標準</span></div></div></div>
+      </div>
+    </section>
+
+<section class="slide live-demo" id="slide-8" data-note-index="8">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header"><div class="slide-hint"><span>08 ─ 情境 3</span></div><h2><span>急單來了，能不能接？</span></h2></div>
+        <div class="slide-body vertical-layout live-body"><div class="badge"><span>現場示範 3 · 虛構案例</span></div>
+      <p class="live-context">客戶臨時提前交貨，接了怕做不到，不接又怕錯失機會。<br>把排程、原料和成本一起看，釐清什麼條件下可以接。</p>
+      <div class="live-prepared"><strong>事先準備／示範資料</strong><p>生產排程.xlsx、庫存料件.xlsx、成本工時.xlsx<br>用這三份 V2 案例表，核對排程、原料及成本。</p></div>
+      <div class="focus-box live-question"><p>「Eva，3,000 件提前交貨，<br>幫我把接單條件算清楚。」</p></div>
+      <div class="icon-row"><div class="icon-chip"><span class="dot"></span><span>9/26 中午到貨</span></div><div class="icon-chip"><span class="dot"></span><span>排程與原料</span></div><div class="icon-chip"><span class="dot"></span><span>成本與毛利</span></div></div></div>
+      </div>
+    </section>
+
+<section class="slide" id="slide-9" data-note-index="9">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>09 ─ 製造業</span></div>
+          <h2><span>算得通，還要把條件確認清楚</span></h2>
+        </div>
+        <div class="slide-body vertical-layout three-answer" style="justify-content:center;">
+          <div class="grid-three-cols">
+            <div class="guideline-card">
+              <span class="tag">排程</span>
+              <h3><span>9/26 中午到貨</span></h3>
+              <p><span>9/18 CNC 完成，9/19 送件；9/24 回廠，9/25 值班驗完。</span></p>
+            </div>
+            <div class="guideline-card">
+              <span class="tag warn">原料</span>
+              <h3><span>補料 500 公斤</span></h3>
+              <p><span>扣除急單與既有用料，仍留 244 公斤，高於安全庫存 200 公斤。</span></p>
+            </div>
+            <div class="guideline-card">
+              <span class="tag gold">成本</span>
+              <h3><span>毛利 21.16 元</span></h3>
+              <p><span>每件全成本 70.64 元；加急費 8%，售價 91.80 元。毛利不是淨利。</span></p>
+            </div>
+          </div>
+          <div class="conclusion-box" style="margin-top:1.8rem;">
+            <p><span>條件式可接：採購、人力、外包、品檢、物流、客戶六項確認後，才能正式承諾。</span></p>
+          </div>
+          <p class="lead-text full-width" style="text-align:center; margin-top:1rem; font-size:1.4rem; color:var(--text-secondary);"><span>虛構示範假設｜任何延誤、成本變更或不良重工，都要重新評估。</span></p>
+        </div>
+      </div>
+    </section>
+
+<section class="slide" id="slide-10" data-note-index="10">
+      <div class="slide-content page-layout-header-body">
+        <div class="slide-header">
+          <div class="slide-hint"><span>10 ─ 小結</span></div>
+          <h2><span>資料清楚了，決定還是由人來做</span></h2>
+        </div>
+        <div class="slide-body vertical-layout" style="justify-content:center;">
+          <div class="grid-three-cols">
+            <div class="guideline-card">
+              <h3><span>準備更清楚</span></h3>
+              <p><span>先看行程與信件，找出真正要準備的事。</span></p>
+            </div>
+            <div class="guideline-card">
+              <h3><span>交辦可追蹤</span></h3>
+              <p><span>負責人、期限、完成標準，都說清楚。</span></p>
+            </div>
+            <div class="guideline-card highlight-border">
+              <h3><span>承諾有根據</span></h3>
+              <p><span>把未確認條件攤開，再決定怎麼答應。</span></p>
+            </div>
+          </div>
+          <div class="conclusion-box" style="margin-top:2rem;">
+            <p><span>「省下整理的時間，還給睡眠與陪伴。」</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section class="slide" id="slide-11" data-note-index="11">
+      <div class="slide-content quote-layout font-adjust">
+        <div class="slide-hint"><span>11 ─ 真諦</span></div>
+        <div class="quote-symbol">“</div>
+        <blockquote class="medium-quote">
+          <span>「科技賦予能力，</span><br>
+          <span>信心賦予智慧。」</span>
+        </blockquote>
+        <cite class="quote-author"><span>── 省下來的時間，才是真正的收穫</span></cite>
+        <div class="synergy-box">
+          <div class="synergy-col">
+            <strong><span>還給自己</span></strong>
+            <p><span>睡眠、體力、和家人吃一頓不看手機的晚餐</span></p>
+          </div>
+          <div class="synergy-col border-left">
+            <strong><span>還給他人</span></strong>
+            <p><span>家訪、陪伴、守護需要鼓勵的會員</span></p>
+          </div>
+        </div>
+        <p class="quote-lead" style="margin-top:1.8rem;"><span>〈面對疾病〉教我們以生命為本。老闆先養好生命，才守得住別人。</span></p>
+      </div>
+    </section>
+
+<section class="slide" id="slide-12" data-note-index="12">
+      <div class="slide-content centered-text-layout">
+        <div class="slide-hint"><span>12 ─ 行動</span></div>
+        <div class="badge"><span>行動邀請</span></div>
+        <h2 class="slide-action-title"><span>今晚睡前，做一件事</span></h2>
+        <div class="action-card">
+          <h3><span>對手機說出明天的行程和三件待辦</span></h3>
+          <p class="action-desc"><span>打開 ChatGPT 語音，把明天要做的事說一遍，請它整理好唸回來給你聽。</span></p>
+          <div class="fee-comparison">
+            <div class="fee-item">
+              <strong><span>先從一句話開始</span></strong>
+              <span><span>把你知道的事情說清楚</span></span>
+            </div>
+            <div class="fee-divider"></div>
+            <div class="fee-item vip">
+              <strong><span>然後放下手機</span></strong>
+              <span><span>早點睡，這就是保養</span></span>
+            </div>
+          </div>
+        </div>
+        <p class="action-footer"><span>「明天早上，你會發現腦袋比平常清楚很多。」</span></p>
+      </div>
+    </section>
+
+<section class="slide" id="slide-13" data-note-index="13">
+      <div class="japan-sun"></div>
+      <div class="slide-content quote-layout finish-slide">
+        <div class="slide-hint"><span>13 ─ 決意</span></div>
+        <div class="quote-symbol">“</div>
+        <blockquote class="large-quote italic-quote">
+          <span>「喜者，自他共喜也。」</span>
+        </blockquote>
+        <h2 class="final-oath">
+          <span>養好自己的生命，</span><br>
+          <span>成為守護他人的力量。</span>
+        </h2>
+        <p class="final-blessing"><span>一生決不退轉，不斷創造勝利實證。感謝大家！</span></p>
+      </div>
+    </section>
+
+    </div>
+  </main>
+
+  <div id="progress-bar"></div>
+
+  <nav id="control-panel">
+    <button id="btn-prev" class="control-btn" title="上一頁 (← / Backspace)">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <span id="slide-number">1 / 13</span>
+    <button id="btn-next" class="control-btn" title="下一頁 (→ / Space / Enter)">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+    <div class="panel-divider"></div>
+    <button id="btn-theme" class="control-btn" title="切換亮暗色模式"><span class="theme-icon">☼</span></button>
+    <button id="btn-notes" class="control-btn" title="開啟/關閉演講小抄備忘錄 (P)"><span class="notes-icon">✍</span></button>
+    <button id="btn-fullscreen" class="control-btn" title="全螢幕模式 (F)">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+    </button>
+  </nav>
+
+  <div id="zone-prev" class="click-zone" title="上一頁"></div>
+  <div id="zone-next" class="click-zone" title="下一頁"></div>
+
+  <aside id="notes-panel" class="hidden">
+    <div class="notes-header">
+      <h3>✍ 演講小抄備忘錄</h3>
+      <button id="btn-notes-close" title="關閉">×</button>
+    </div>
+    <div class="notes-content-area">
+      <div id="note-content"></div>
+    </div>
+  </aside>
+
+  <div id="notes-database" style="display:none;">
+<div data-note-for="1"><p><strong>〔時間〕</strong>前段講述 4–5 分鐘之一</p><p><strong>〔位置與畫面〕</strong>台前；同伴切簡報</p><ul><li>各位前輩，今天談的是「AI 時代的人間革命／生命大保養」：老闆先養好自己，才有力量守護別人。</li><li>先講觀念與工具，再到後方親自操作三段示範。全場估20分15秒至24分45秒，尚未獲主辦核定；不可沿用全場12分鐘口徑。</li></ul></div>
+<div data-note-for="2"><p><strong>〔時間〕</strong>前段講述</p><p><strong>〔位置與畫面〕</strong>台前；同伴切簡報</p><ul><li>六月談老闆自己的革命，今天更進一步：把睡眠、體力和陪伴照顧好，才有本錢守護他人。</li><li>保留原來的六月回顧與現場互動；本頁只講述，不切示範畫面。</li></ul></div>
+<div data-note-for="3"><p><strong>〔時間〕</strong>前段講述</p><p><strong>〔位置與畫面〕</strong>台前；同伴切簡報</p><ul><li>當老闆常透支的是睡眠、體力、陪伴。AI可以協助處理整理工作，但省下時間之後要把它用在哪裡，仍是人的選擇。</li><li>沿用睡眠、體力與陪伴的三個例子，不在此頁進行現場操作。</li></ul></div>
+<div data-note-for="4"><p><strong>〔時間〕</strong>前段收束</p><p><strong>〔位置與畫面〕</strong>台前；同伴切簡報</p><ul><li>用一句話說清楚需求，讓Eva把多個來源整理好，我們再確認條件和下一步。</li><li>不要說三個代理已同時執行；本次展示的是實際查資料、整理和追問。接著請同伴切到第5頁。</li></ul></div>
+<div data-note-for="5"><p><strong>〔時間〕</strong>工具說明30–45秒；轉場45–60秒，只一次</p><p><strong>〔位置與畫面〕</strong>台前講工具，再走至後方音控台；同伴停留本頁</p><ul><li>先用30–45秒說明：「今天會提到大家熟悉的ChatGPT，我們使用已登入的ChatGPT帳號，在Codex App桌面版中操作。我用這台PC、網路和麥克風，透過語音向Eva提問。Google日曆和Gmail提供案例資料，本機還有會議紀錄與三份Excel表，都已事先準備好。」</li><li>這次實際操作介面為Codex桌面版，無須另外同時操作ChatGPT視窗。帳號、權限與資料已先備妥；不承諾免費方案、免登入或任一PC無條件可用。設備與語音做法依本次Windows PC環境及既有彩排，不延伸成通用產品規格。</li><li>帳號用語核對：OpenAI官方Authentication說明Codex可使用ChatGPT登入。來源：https://learn.chatgpt.com/docs/auth#sign-in-with-chatgpt 。本次沿用使用者現有介面名稱「Codex App桌面版」。</li><li>即時語音口白：「這次用即時語音互動，邊說、邊查資料，再把結果呈現在畫面上。我們一輪一輪問，讓Eva算快一點、說慢一點。」這是本次已彩排的互動方式，仍需等查詢和回答完成。</li><li>功能名稱核對：官方目前稱ChatGPT Voice，由GPT-Live支援，可在Codex工作中使用。未查證「Codex Live」為官方名稱，因此投影片採「即時語音互動」。來源：https://learn.chatgpt.com/docs/whats-new#talk-through-work-with-chatgpt-voice 。不延伸承諾最新發布、免費、所有帳號或所有PC都能使用。</li><li>「接下來我到後方親自操作，請大家繼續看大螢幕。我們依序看行程與信件、會後交辦、急單判斷。」</li><li>約10秒口白、25–35秒移動、10–15秒接手。路程與音訊以現場走測為準，不假定前台能連筆電。</li><li>講者抵達後才接管鍵盤；之後所有示範、小結與結尾都在後方，不再走回前台。</li></ul></div>
+<div data-note-for="6"><p><strong>〔時間〕</strong>情境1：4–5分鐘；含開場與切換</p><p><strong>〔位置與畫面〕</strong>後方；講者切回Codex語音</p><ul><li>前情：「老闆今天有幾個行程，準備資訊卻散在日曆和信件裡。先看要準備什麼，再決定優先順序。」</li><li>指向本頁「事先準備／示範資料」：9/12模擬行程與Gmail案例信件已先備妥。原始資料是行事曆.ics與emails信件檔，已匯入示範帳號；AI會查資料，不能憑空補造。畫面會查3個行程、讀急單與外包2封相關信。</li><li>先顯示本頁前情，再手動切Codex。中間留對話文字，右側依序展示既有示範日曆、Gmail搜尋及相關信件。自動精準切既有分頁未另驗證；必要時自己點分頁。</li><li>共用範圍：via9110@gmail.com、FANYA20260912V2、情境日2026/9/12。已完成其他工作中的帳號與畫面彩排，本輪不重設授權、不更動郵件或行程。</li><li>彩排對照：當天3行程（上午金弘笙AI分享、14:00鈺豐急單電話、16:30新社家訪），找到2封急單相關信；另外2行程找不到相關信就直說，不能補造。</li><li>優先處理鈺豐急單的永光檔期確認：原需9/11確認，情境日9/12仍沒有確認證據。這是尚未證實，不代表已拒絕或已排定。</li><li>完整準備表留在中間對話；口播先結論再兩點。最後只產出給永光張經理的可複製LINE草稿，不發送。</li></ul><p><strong>〔逐輪提問〕</strong></p><ol><li>Eva，請以9月12日為準，查我的日曆行程，搜尋與行程相關的信件，在瀏覽器展示日曆及搜尋結果，打開相關信件，整理提前準備事項；找不到相關信件就直接說明。</li><li>今天如果只能先處理一件事，妳建議做哪件？為什麼？</li><li>最大的關鍵變數是什麼？現在有沒有確認證據？</li><li>我現在具體應該採取什麼行動？</li><li>請擬一段可以一鍵複製給永光張經理的LINE，確認檔期、週六收件及回運安排。只產生草稿，不發送。</li></ol></div>
+<div data-note-for="7"><p><strong>〔時間〕</strong>情境2：3–4分鐘；含開場與切換</p><p><strong>〔位置與畫面〕</strong>後方；講者切Codex，附上本地逐字稿</p><ul><li>前情：「開完會事情有沒有往前走，關鍵在交辦是否清楚。看AI如何把會議內容變成可追蹤工作。」</li><li>指向本頁「事先準備／示範資料」：會議逐字稿.txt是預先準備的9/9主管會議文字紀錄。這次AI依文字整理，不做即時錄音轉寫。</li><li>直接使用示範附件/會議逐字稿.txt（與原V2檔案逐位元相同），不重新口述或錄音。右側開啟文件，中間保留決議與完整待辦表。</li><li>先分清楚決議、提案、未確認事項；每件有事項、負責人、期限、完成標準。未指定人或日期標待確認。</li><li>會議明確要求老闆先審8D報告。其他需要老闆把關的環節與新分工，標為建議，不說是會議已決定。</li><li>依阿芳、老張、小美順序產出3份可複製LINE追蹤稿，不寄送；不把提案說成已承諾、已完成或已設提醒。</li><li>重播9/9會議內容，追蹤以9/12情境日觀察；9/11期限已過且缺確認證據，要明列待追，不另設過去提醒。</li></ul><p><strong>〔逐輪提問〕</strong></p><ol><li>Eva，請讀這份會議逐字稿，整理決議與to-do。每件列事項、負責人、期限、完成標準；未指定的標待確認，提案不要當成承諾或已完成。</li><li>哪些是老闆明確需要確認的？哪些只是妳建議把關的？如果還沒確認，會影響什麼？</li><li>請依阿芳、老張、小美的順序，各產出一份可複製的LINE追蹤稿。保持簡短，清楚列責任、期限與完成標準，只擬稿，不發送。</li></ol></div>
+<div data-note-for="8"><p><strong>〔時間〕</strong>情境3：5–6分鐘；含開場與切換</p><p><strong>〔位置與畫面〕</strong>後方；講者在Codex附上三份本地xlsx</p><ul><li>前情：「客戶突然提前交貨，接怕做不到，不接怕錯失機會。讓AI把排程、原料、成本一起看，釐清接單條件。」</li><li>指向本頁「事先準備／示範資料」：三份V2案例表為生產排程.xlsx、庫存料件.xlsx、成本工時.xlsx。已有客戶急單與外包報價信可補充，會議逐字稿可作背景；本段主要讀取三份表。</li><li>使用生產排程.xlsx、庫存料件.xlsx、成本工時.xlsx。右側保留本地文件，完整表格留在中間對話，不逐字念長表。</li><li>對照：常班空檔上限2,150，缺850；方案實排常班2,100+加班900，3人×2小時×5天；9/18 17:00完成CNC。</li><li>9/19 10:00永光收件；9/21–23各1,000件，9/23 17:00完成；9/24 09:00回廠；24、25各檢1,500件；25日品檢3人5小時；9/26中午前到貨，不是只出貨。</li><li>原料：540急單+136既有−420庫存=淨缺256kg；保200kg安全需456kg，以50kg包裝買500kg，餘244kg，9/14 08:00到貨。</li><li>每件21.24材料+28CNC+12外包+4檢包+3.20加班+0.60運費+1.60假日品檢=70.64元。原售85毛利14.36；加8%售91.80、毛利21.16、整单63,480。毛利不是淨利。</li><li>六項確認：採購500kg在9/14 08:00到廠；CNC加班3人每天2小時共5天；永光9/19週六收件並保留9/21–23每天1,000件；品檢9/25假日3人各5小時；三趟專車9/19送、9/24回、9/26中午前送達；客戶接受8%加價及週六收貨。延誤、成本變更、不良重工都重估。全數合格是計算假設，不是驗收結果。</li><li>同伴提醒段落時間，計算時可說明正在核對工序前後。一次只問一輪，讓Eva短、慢、分段回答。</li></ul><p><strong>〔逐輪提問〕</strong></p><ol><li>Eva，請看這三份表。3,000件要9月26日中午前到貨，可以接嗎？先給結論，再說主要限制。</li><li>CNC、外包電鍍、往返運送、品檢到客戶收貨，要怎麼排？請把時間接起來，也檢查假日與人力。</li><li>原料到底要補多少？把既有工單與安全庫存算進去。再算完整每件成本、原價毛利，以及收8%加急費後的毛利。</li><li>正式答應客戶前，哪六項條件要確認？哪些變動會讓我們必須重估？請分清楚假設與已確認證據。</li></ol></div>
+<div data-note-for="9"><p><strong>〔時間〕</strong>小結與結尾合計3分鐘之一</p><p><strong>〔位置與畫面〕</strong>後方；手動回簡報第9頁</p><ul><li>「條件式可接，不等於已能承諾。時間接起來、材料補足、成本算清楚，最後還要取得六項確認。」</li><li>只點到9/26中午到貨、補500kg留244kg、成本70.64／售價91.80／毛利21.16。詳表已在Codex對話，不再逐項重念。</li><li>若Live未完成，坦白說這是V2資料已驗算的備援摘要，不說是剛才現場計算結果。</li></ul></div>
+<div data-note-for="10"><p><strong>〔時間〕</strong>後方小結</p><p><strong>〔位置與畫面〕</strong>後方；講者切簡報</p><ul><li>「今天三件事：準備更清楚、交辦可追蹤、承諾有根據。資料整理好，該做什麼仍由人決定。」</li><li>不說三個代理同時執行、不宣稱剛剛只花兩分鐘。省下整理時間，才有機會還給睡眠與陪伴。</li></ul></div>
+<div data-note-for="11"><p><strong>〔時間〕</strong>後方結語</p><p><strong>〔位置與畫面〕</strong>後方；講者切簡報</p><ul><li>「科技賦予能力，信心賦予智慧。省下來的時間，才是真正的收穫。」</li><li>一半還給自己：睡眠、體力、和家人吃一頓不看手機的晚餐；一半還給他人：家訪、陪伴、守護需要鼓勵的會員。保留〈面對疾病〉以生命為本的意涵。</li></ul></div>
+<div data-note-for="12"><p><strong>〔時間〕</strong>後方行動邀請</p><p><strong>〔位置與畫面〕</strong>後方；講者切簡報</p><ul><li>「今晚睡前，對手機說出明天的行程和三件待辦，請它整理好唸回來。先從自己說清楚一件事開始。」</li><li>然後放下手機，早點睡。這是生活上的行動邀請，不新增第四個現場示範。</li></ul></div>
+<div data-note-for="13"><p><strong>〔時間〕</strong>後方最後結尾</p><p><strong>〔位置與畫面〕</strong>後方；講者留在音控台完成</p><ul><li>「喜者，自他共喜也。」養好自己的生命，成為守護他人的力量。</li><li>「一生決不退轉，不斷創造勝利實證。感謝大家！」朝觀眾方向致意即可，不再走回前台。</li></ul></div>
+</div>
+<script src="script.js?v=live-three-20260912"></script>
+</body>
+</html>
