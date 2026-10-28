@@ -181,7 +181,7 @@ def build(ref1_rows, ref2_rows, copy_line, faq):
         f'<div class="pt rise{" hi" if i == 4 else ""}" style="--d:{i}"><div class="d">{d}</div><div class="dot"></div><p>{p}</p></div>'
         for i, (d, p) in enumerate(career)) + '</div><div class="now">'
         f'<div class="rise" style="--d:5"><b>30<small>年</small></b><span>行銷資歷<br>25 歲入行</span></div>'
-        f'<div class="rise" style="--d:6"><b>14<small>堂</small></b><span>台中教大 AI 課<br>教了三年半</span></div>'
+        f'<div class="rise" style="--d:6"><b>14<small>期</small></b><span>台中教大 AI 課<br>教了三年半</span></div>'
         f'<div class="rise" style="--d:7"><b>100<small>+期</small></b><span>AI 每日晨報<br>自己寫的引擎</span></div>'
         '</div></div>', "現任：梵亞行銷創辦人兼執行總監｜百年連鎖餐飲品牌總經理的 AI 私人教練")
 
