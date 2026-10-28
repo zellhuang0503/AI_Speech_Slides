@@ -225,7 +225,12 @@ def build(ref1_rows, ref2_rows, copy_line, faq):
         role_card("user", "志宏老師", "給目標、<br>客群與限制"), role_card("spark", "EVA", "比較選項，<br>提出理由", True),
         role_card("user", "志宏老師", "追問依據<br>與資源取捨")), CASE)
 
-    S[10] = frame(10, K1, "「你為什麼選這個方案？」", chat("先給結論，再列出證據。", "把已知、假設與待確認分開。"), CASE)
+    S[10] = frame(10, K1, "「你為什麼選這個方案？」", chat(
+        "先給結論，再列出證據。",
+        '<div class="lead">建議先試 C。</div>'
+        '<div class="tag"><b>已知</b>C 的 60 位新客有 18 位回來，30%。資料裡有。</div>'
+        '<div class="tag"><b>假設</b>這次辦 C，回購也會有三成。我估的。</div>'
+        '<div class="tag"><b>待確認</b>店裡每天能多接幾筆。要問店長。</div>'), CASE)
 
     S[11] = frame(11, K1, "選擇的理由，要能被追問", f'''<div class="ladder">
 <div class="lad rise" style="--d:0">{stamp("期待", "c")}<div class="lb">初始期待</div><div class="bg">150</div><div class="un">位新客</div></div>
@@ -285,9 +290,9 @@ def build(ref1_rows, ref2_rows, copy_line, faq):
 <div class="card rise" style="--d:0">{I("bot")}<p>AI 做了很多執行工作。</p></div>
 <div class="card hi rise" style="--d:2"><span class="qm">?</span>{I("user")}<p>人在哪些地方<br>改變了結果？</p></div></div>''', ME)
 
-    S[22] = frame(22, K2, "人的三明治，是反覆循環", '''<div class="sand"><div class="lys">
+    S[22] = frame(22, K2, "人與 AI 協作的三明治原則", '''<div class="sand"><div class="lys">
 <div class="ly br t rise" style="--d:0"><b>人：</b>給目標、背景、限制與標準</div>
-<div class="ly f rise" style="--d:1"><b>AI：</b>執行、整理、計算與起草</div>
+<div class="ly f rise" style="--d:1"><b>AI：</b>執行、整理、計算與起草<span class="sub">工作量最大的一層，全部交給 AI；人只做兩頭最重要的事</span></div>
 <div class="ly br b rise" style="--d:2"><b>人：</b>查證、判斷、修正，再交回 AI</div></div>
 <div class="loop rise" style="--d:3"><svg viewBox="0 0 170 350"><path d="M24 322C152 322 152 28 24 28"/><path d="M52 6 24 28l28 22"/></svg></div></div>''', ME)
 
